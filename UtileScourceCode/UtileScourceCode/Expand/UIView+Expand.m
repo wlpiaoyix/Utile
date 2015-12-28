@@ -126,14 +126,22 @@
     UIView * owner = [[NSBundle  mainBundle] loadNibNamed:NSStringFromClass(self) owner:self options:nil] .lastObject;
     return owner;
 }
-
--(UIImage*) drawView{
-    UIGraphicsBeginImageContext(self.frame.size);
+-(UIImage * _Nullable) drawView{
+    return [self drawViewWithBounds:self.bounds];
+}
+-(UIImage * _Nullable) drawViewWithBounds:(CGRect) bounds{
+    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 2.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self.layer renderInContext:context];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGContextTranslateCTM(context, -bounds.origin.x, -bounds.origin.y);
+    CALayer *layer = self.superview.layer;
+    [layer renderInContext:context];
+    __block UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    //takes a screenshot of that portion of the screen and blurs it
+    //helps w/ our colors when blurring
+    //feel free to adjust jpeg quality (lower = higher perf)
+    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+    return [UIImage imageWithData:imageData];
 }
 
 #pragma undefined

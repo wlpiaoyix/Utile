@@ -160,8 +160,8 @@
  y:反转位置 :bounds.size.height
  */
 +(CGSize) drawTextWithContext:(nullable CGContextRef) context attribute:(nonnull NSMutableAttributedString*) attribute rect:(CGRect) rect y:(CGFloat) y scaleFlag:(BOOL) scaleFlag{
-    CGRect * rects = {&rect};
-    return [self drawTextWithContext:context attribute:attribute rects:rects lenghtRect:1 y:YES scaleFlag:YES];
+    CGRect rects[] = {rect};
+    return [self drawTextWithContext:context attribute:attribute rects:rects lenghtRect:1 y:y scaleFlag:scaleFlag];
 }
 
 /**
@@ -169,7 +169,7 @@
  rect:位置和区域大小
  y:反转位置 :bounds.size.height
  */
-+(CGSize) drawTextWithContext:(CGContextRef) context attribute:(NSMutableAttributedString*) attribute rects:(CGRect * _Nonnull) rects lenghtRect:(NSUInteger) lengthRect y:(CGFloat) y scaleFlag:(BOOL) scaleFlag{
++(CGSize) drawTextWithContext:(CGContextRef) context attribute:(NSMutableAttributedString*) attribute rects:(CGRect *) rects lenghtRect:(NSUInteger) lengthRect y:(CGFloat) y scaleFlag:(BOOL) scaleFlag{
     [self startDraw:&context];
     if (scaleFlag) {
         CGContextSetTextMatrix(context, CGAffineTransformIdentity);//重置绘图环境矩阵
@@ -179,15 +179,11 @@
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     for (NSUInteger index = 0; index < lengthRect; index++) {
-        CGRect *rect = &rects[0];
-        (*rect).origin.y = y - (*rect).size.height - (*rect).origin.y;
+        (rects[index]).origin.y = y - (rects[index]).size.height - (rects[index]).origin.y;
     }
     CGPathAddRects(pathRef, nil, rects, 1);
     
     //==>根据据attributeString的信息构建所需的空间大小
-//    CFStringRef keys[] = {};
-//    CFTypeRef values[] = {};
-//    CFDictionaryRef dicRef = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values,sizeof(keys) / sizeof(keys[0]), &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attribute);
     CTFrameRef frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attribute.length), pathRef, nil);
@@ -201,9 +197,6 @@
     // Clean up
     CFRelease(framesetter);
     CFRelease(frameRef);
-//    CFRelease(dicRef);
-//    CFRelease(keys);
-//    CFRelease(values);
     
     return coreTextSize;
 }
@@ -230,3 +223,8 @@
     CGContextStrokePath(*contextPointer);
 }
 @end
+
+
+//    CFStringRef keys[] = {};
+//    CFTypeRef values[] = {};
+//    CFDictionaryRef dicRef = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values,sizeof(keys) / sizeof(keys[0]), &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);

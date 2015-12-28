@@ -16,6 +16,10 @@
 #define IOS8_OR_LATER (!(NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0))
 #endif
 
+#ifndef IOS9_OR_LATER
+#define IOS9_OR_LATER ((NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_4))
+#endif
+
 #ifndef RGB
 #define RGB(R,G,B) [UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:1.0]
 #endif

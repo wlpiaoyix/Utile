@@ -39,4 +39,6 @@ FOUNDATION_EXPORT const unsigned char Utile_FrameworkVersionString[];
 #import "PYGraphicsDraw.h"
 #import "PYGraphicsThumb.h"
 
+#import "PYFrostedEffectView.h"
+
 

@@ -18,6 +18,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "PYHook.h"
+#import "PYFrostedEffectView.h"
 
 @interface PYDrawView:UIView
 @end
@@ -49,9 +50,6 @@
 @end
 
 
-static void bb(id target, SEL action){
-}
-
 @interface PYViewVC ()
 @property (nonatomic,strong) UIImage *imageOrg;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -60,6 +58,7 @@ static void bb(id target, SEL action){
 @property (nonatomic) UIView *view02;
 @property (nonatomic) UIView *view03;
 @property (nonatomic, strong) PYGraphicsThumb *gt;
+@property (strong, nonatomic) PYFrostedEffectView *forview;
 
 @end
 
@@ -67,26 +66,13 @@ static void bb(id target, SEL action){
 + (NSMethodSignature *) instanceMethodSignatureForSelector:(SEL)aSelector{
     return [self instanceMethodSignatureForSelector:aSelector];
 }
-+(void) aa{
-}
-
 
 - (void)viewDidLoad {
-    SEL action = @selector(aa);
-    Method method = class_getClassMethod(self.class, action);
-    const char * typeEncoding =  method_getTypeEncoding(method);
-    method_setImplementation(method, (IMP)_objc_msgForward);
-    [self.class aa];
     
     
     [super viewDidLoad];
-    [PYHook mergeHookInstanceWithTarget:self.class action:@selector(b:) blockBefore:^BOOL(NSInvocation *invoction) {
-        NSLog(@"");
-        return true;
-    } blockAfter:^(NSInvocation * invoction) {
-        NSLog(@"");
-    }];
-    CGPoint a = [self b:CGPointMake(20, 20)];
+    
+    
     self.view01 = [PYDrawView new];
     self.view01.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.view01];
@@ -162,7 +148,35 @@ static void bb(id target, SEL action){
     [self.view addSubview:lable];
     [lable automorphismWidth];
     [lable automorphismHeight];
-    // Do any additional setup after loading the view.
+    self.forview = [[PYFrostedEffectView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+    UIView *view = [UIView new];
+    view.tag = 55;
+    view.frame = self.view.bounds;
+    [self.view addSubview:view];
+    view.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.forview];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @strongify(self)
+        @weakify(self)
+        __block NSUInteger index = 0;
+        while (true) {
+            index += 1;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self)
+                self.forview.effectValue = 0.5;
+                [self.forview refreshForstedEffect];
+            });
+            [NSThread sleepForTimeInterval:2];
+        }
+    });
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1.jpg"]];
+//    imageView.frame = CGRectMake(0, 300, 320, 320);
+//    imageView.image = [imageView.image drn_boxblurImageWithBlur:1];
+//    [self.view addSubview:imageView];
+//    [UIView animateWithDuration:10 animations:^{
+//        view.frame = CGRectMake(300, 300, 320, 320);
+//    }];
 }
 -(void) viewDidAppear:(BOOL)animated{
     [self.view drawView];

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1509F9391BFC4CFF002BC32D /* PYGraphicsDraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 1522DE2D1BFB2C8F0075C7FB /* PYGraphicsDraw.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1509F93A1BFC4D11002BC32D /* PYGraphicsDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522DE2E1BFB2C8F0075C7FB /* PYGraphicsDraw.m */; };
+		1512AA201C2BCC1B006AAB41 /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA1D1C2BCC1B006AAB41 /* DRNRealTimeBlurView.m */; };
+		1512AA211C2BCC1B006AAB41 /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA1F1C2BCC1B006AAB41 /* UIImage+BoxBlur.m */; };
+		1512AA241C2BCFDD006AAB41 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA231C2BCFDD006AAB41 /* UIImage+ImageEffects.m */; };
+		1512AA281C2BD413006AAB41 /* PYFrostedEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */; };
+		1512AA291C2BE26F006AAB41 /* PYFrostedEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */; };
+		1512AA2A1C2BE27C006AAB41 /* PYFrostedEffectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1512AA261C2BD413006AAB41 /* PYFrostedEffectView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1522DE2F1BFB2C8F0075C7FB /* PYGraphicsDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522DE2E1BFB2C8F0075C7FB /* PYGraphicsDraw.m */; };
 		1559770E1BE7007B0026E476 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559770D1BE7007B0026E476 /* AsyncImageView.m */; };
 		155977151BE703E00026E476 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 155977131BE703E00026E476 /* MBProgressHUD.m */; };
@@ -128,6 +134,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1512AA1C1C2BCC1B006AAB41 /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRNRealTimeBlurView.h; sourceTree = "<group>"; };
+		1512AA1D1C2BCC1B006AAB41 /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
+		1512AA1E1C2BCC1B006AAB41 /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		1512AA1F1C2BCC1B006AAB41 /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		1512AA221C2BCFDD006AAB41 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		1512AA231C2BCFDD006AAB41 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		1512AA261C2BD413006AAB41 /* PYFrostedEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYFrostedEffectView.h; sourceTree = "<group>"; };
+		1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYFrostedEffectView.m; sourceTree = "<group>"; };
 		1522DE2D1BFB2C8F0075C7FB /* PYGraphicsDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGraphicsDraw.h; sourceTree = "<group>"; };
 		1522DE2E1BFB2C8F0075C7FB /* PYGraphicsDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGraphicsDraw.m; sourceTree = "<group>"; };
 		1559770C1BE7007B0026E476 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
@@ -233,6 +247,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1512AA1B1C2BCC1B006AAB41 /* DRNRealTimeBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				1512AA221C2BCFDD006AAB41 /* UIImage+ImageEffects.h */,
+				1512AA231C2BCFDD006AAB41 /* UIImage+ImageEffects.m */,
+				1512AA1C1C2BCC1B006AAB41 /* DRNRealTimeBlurView.h */,
+				1512AA1D1C2BCC1B006AAB41 /* DRNRealTimeBlurView.m */,
+				1512AA1E1C2BCC1B006AAB41 /* UIImage+BoxBlur.h */,
+				1512AA1F1C2BCC1B006AAB41 /* UIImage+BoxBlur.m */,
+			);
+			path = DRNRealTimeBlurView;
+			sourceTree = "<group>";
+		};
+		1512AA251C2BD403006AAB41 /* FrostedEffectView */ = {
+			isa = PBXGroup;
+			children = (
+				1512AA261C2BD413006AAB41 /* PYFrostedEffectView.h */,
+				1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */,
+			);
+			path = FrostedEffectView;
+			sourceTree = "<group>";
+		};
 		1522DE2C1BFB2C810075C7FB /* GraphicsDraw */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +411,8 @@
 		15E6A0951BD774EC00511160 /* UtileScourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				1512AA251C2BD403006AAB41 /* FrostedEffectView */,
+				1512AA1B1C2BCC1B006AAB41 /* DRNRealTimeBlurView */,
 				15F76C0B1C1E733F00DB41BC /* Hook */,
 				1522DE2C1BFB2C810075C7FB /* GraphicsDraw */,
 				15A15CCE1BF06AFB0013176F /* ViewAutolayout */,
@@ -465,6 +503,7 @@
 				155977181BE70E1E0026E476 /* MBProgressHUD.h in Headers */,
 				15902FC51C070F0400CAEF89 /* NSArray+Expand.h in Headers */,
 				15D0C4B71C0BF42200B81F23 /* PYGraphicsThumb.h in Headers */,
+				1512AA2A1C2BE27C006AAB41 /* PYFrostedEffectView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1512AA291C2BE26F006AAB41 /* PYFrostedEffectView.m in Sources */,
 				15D0C4B61C0BF41400B81F23 /* PYGraphicsThumb.m in Sources */,
 				15902FC61C070F1400CAEF89 /* NSArray+Expand.m in Sources */,
 				15902FBE1C07049C00CAEF89 /* NSDictionary+Expand.m in Sources */,
@@ -662,10 +702,12 @@
 				15A44B371BE8A2A1007D6E4A /* UIColor+Expand.m in Sources */,
 				15BA65A81BE07B2B00CF192B /* PYUtile.m in Sources */,
 				1559770E1BE7007B0026E476 /* AsyncImageView.m in Sources */,
+				1512AA281C2BD413006AAB41 /* PYFrostedEffectView.m in Sources */,
 				15D0C4B51C0BE98800B81F23 /* PYGraphicsThumb.m in Sources */,
 				15902FBA1C07030300CAEF89 /* NSDictionary+Expand.m in Sources */,
 				1522DE2F1BFB2C8F0075C7FB /* PYGraphicsDraw.m in Sources */,
 				15AEF1B71BEAFEC200732F84 /* NSObject+Expand.m in Sources */,
+				1512AA201C2BCC1B006AAB41 /* DRNRealTimeBlurView.m in Sources */,
 				15A15CD11BF06AFB0013176F /* PYViewAutolayoutCenter.m in Sources */,
 				15F76C0E1C1E735300DB41BC /* PYHook.m in Sources */,
 				15902FBD1C07036E00CAEF89 /* NSData+Expand.m in Sources */,
@@ -673,6 +715,8 @@
 				15A44B381BE8A2A1007D6E4A /* UIImage+Expand.m in Sources */,
 				155977151BE703E00026E476 /* MBProgressHUD.m in Sources */,
 				15E6A09B1BD774EC00511160 /* AppDelegate.m in Sources */,
+				1512AA211C2BCC1B006AAB41 /* UIImage+BoxBlur.m in Sources */,
+				1512AA241C2BCFDD006AAB41 /* UIImage+ImageEffects.m in Sources */,
 				15E6A0981BD774EC00511160 /* main.m in Sources */,
 				15A44B331BE8A2A1007D6E4A /* NSNumber+Expand.m in Sources */,
 				157886C01BD9CA2A00B91D76 /* RegexPredicate.m in Sources */,

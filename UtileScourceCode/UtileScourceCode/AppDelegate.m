@@ -12,7 +12,6 @@
 #import "PYUtile.h"
 #import "NSDictionary+Expand.h"
 #import "NSData+Expand.h"
-#import "PYHttpRequest.h"
 #import "PYHook.h"
 #import <objc/runtime.h>
 
@@ -29,14 +28,6 @@
 
 //    NSDate *date = [NSDate date];
 //    date = [date setCompentsWithBinary:0b100011];
-//    
-//    PYHttpRequest *requst = [PYHttpRequest new];
-//    [[[requst setBlockSuccess:^(int status, id _Nullable data, id<PYHttpRequest>  _Nonnull target) {
-//        NSString *arg = [data toString];
-//        NSLog(arg);
-//    }] setBlockFaild:^(int status, id  _Nullable data, id<PYHttpRequest>  _Nonnull target) {
-//        NSLog(@"");
-//    }] requestGet:@"http://www.baidu.com" params:nil];
     
 //    NSDictionary *info = [PYUtile getInfoPlistWithName:@"Info"];
 //    CGRect r;

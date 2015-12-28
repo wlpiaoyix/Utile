@@ -33,4 +33,8 @@ extern const NSString * _Nonnull PYColorMatrixCIVignetteEffect;
 /*滤镜功能*/
 +(UIImage * _Nonnull) imageWithImage:(UIImage * _Nonnull)inImage colorMatrix:(NSString * _Nonnull) colorMatrix;
 +(UIImage * _Nonnull)imageWithImage:(UIImage * _Nonnull)inImage colorMatrix:(NSString * _Nonnull) colorMatrix rectMatrix:(CGRect) rectMatrix;
+/**
+ 毛玻璃
+ */
+-(UIImage * _Nonnull) applyEffect:(CGFloat)blur;
 @end
