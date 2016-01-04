@@ -127,7 +127,7 @@
     return owner;
 }
 -(UIImage * _Nullable) drawView{
-    return [self drawViewWithBounds:self.bounds];
+    return [self drawViewWithBounds:self.frame];
 }
 -(UIImage * _Nullable) drawViewWithBounds:(CGRect) bounds{
     UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 2.0);

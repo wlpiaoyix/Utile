@@ -11,18 +11,27 @@
 #import "UIView+Expand.h"
 #import "EXTScope.h"
 #import <QuartzCore/QuartzCore.h>
+@interface PYFrostedEffectView()
+@property (nonatomic, strong) UIImageView *imageForstedEffect;
+@end
 
 @implementation PYFrostedEffectView
 
 -(instancetype) init{
     if (self = [super init]) {
         self.effectValue = .5;
+        self.imageForstedEffect = [UIImageView new];
+        [self.imageForstedEffect removeFromSuperview];
+        [self addSubview:self.imageForstedEffect];
     }
     return self;
 }
 -(instancetype) initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.effectValue = .5;
+        self.imageForstedEffect = [UIImageView new];
+        [self.imageForstedEffect removeFromSuperview];
+        [self addSubview:self.imageForstedEffect];
     }
     return self;
 }
@@ -40,13 +49,16 @@
             CGFloat alpha = self.alpha;
             [PYFrostedEffectView toggleBlurViewsInView:self.superview hidden:YES alpha:alpha];
             
-            __block CGRect visibleRect = [self.superview convertRect:self.frame toView:self];
-            visibleRect.origin.y += self.frame.origin.y;
-            visibleRect.origin.x += self.frame.origin.x;
+            __block CGRect visibleRect = self.frame;
+            visibleRect.origin.y += self.superview.frame.origin.y;
+            visibleRect.origin.x += self.superview.frame.origin.x;
             
-            UIImage *image = [[self.superview drawViewWithBounds:visibleRect] applyEffect:self.effectValue];
+            self.imageForstedEffect.frameSize = self.frameSize;
+            self.imageForstedEffect.frameOrigin = CGPointMake(0, 0);
+            self.imageForstedEffect.image = [[self.superview drawViewWithBounds:visibleRect] applyEffect:self.effectValue];
+            
             [PYFrostedEffectView toggleBlurViewsInView:self.superview hidden:NO alpha:alpha];
-            self.layer.contents = (id)image.CGImage;
+
         });
     });
 }
