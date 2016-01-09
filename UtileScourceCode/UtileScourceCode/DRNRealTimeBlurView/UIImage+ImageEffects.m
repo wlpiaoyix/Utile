@@ -67,7 +67,7 @@
         return nil;
     }
 
-    CGRect imageRect = { CGPointZero, self.size };
+    CGRect imageRect = {CGPointZero, self.size};
     UIImage *effectImage = self;
     
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;

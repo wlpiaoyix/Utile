@@ -25,7 +25,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    [PYUtile soundWithPath:nil isShake:true];
 //    NSDate *date = [NSDate date];
 //    date = [date setCompentsWithBinary:0b100011];
     

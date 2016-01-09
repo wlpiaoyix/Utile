@@ -155,6 +155,7 @@
     [self.view addSubview:view];
     view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.forview];
+    self.forview.backgroundColor = [UIColor colorWithRed:1 green:1 blue:0 alpha:0.8];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self)

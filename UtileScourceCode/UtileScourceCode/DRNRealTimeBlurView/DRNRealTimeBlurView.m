@@ -169,7 +169,7 @@
         //helps w/ our colors when blurring
         //feel free to adjust jpeg quality (lower = higher perf)
         NSData *imageData = UIImageJPEGRepresentation(image, kDRNRealTimeBlurViewScreenshotCompression);
-        image = [[UIImage imageWithData:imageData] applyEffect:kDRNRealTimeBlurViewBlurRadius];
+        image = [[UIImage imageWithData:imageData] applyEffect:kDRNRealTimeBlurViewBlurRadius tintColor:[UIColor clearColor]];
     
         dispatch_sync(dispatch_get_main_queue(), ^{
             //update the layer content

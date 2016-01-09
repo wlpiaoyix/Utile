@@ -125,8 +125,10 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
 //<==
 /**
  毛玻璃
+ @blur 透明度
+ @tintColor 毛玻璃颜色
  */
--(UIImage * _Nonnull) applyEffect:(CGFloat)blur{
+-(UIImage * _Nonnull) applyEffect:(CGFloat)blur tintColor:(nullable UIColor *) tintColor{
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
     }
@@ -151,8 +153,9 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
     //create vImage_Buffer for output
     pixelBuffer = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
     
-    if(pixelBuffer == NULL)
+    if(pixelBuffer == NULL){
         NSLog(@"No pixelbuffer");
+    }
     
     outBuffer.data = pixelBuffer;
     outBuffer.width = CGImageGetWidth(img);
@@ -177,25 +180,36 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
     }
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(outBuffer.data,
+    CGContextRef outputContext = CGBitmapContextCreate(outBuffer.data,
                                              outBuffer.width,
                                              outBuffer.height,
                                              8,
                                              outBuffer.rowBytes,
                                              colorSpace,
                                              kCGImageAlphaNoneSkipLast);
-    CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
+    
+    
+    
+    // Add in color tint.
+    if (tintColor) {
+        CGRect imageRect = {CGPointZero, self.size};
+        CGContextSaveGState(outputContext);
+        CGContextSetFillColorWithColor(outputContext, tintColor.CGColor);
+        CGContextFillRect(outputContext, imageRect);
+        CGContextRestoreGState(outputContext);
+    }
+    
+    CGImageRef imageRef = CGBitmapContextCreateImage(outputContext);
     UIImage *returnImage = [UIImage imageWithCGImage:imageRef];
     
     //clean up
-    CGContextRelease(ctx);
+    CGContextRelease(outputContext);
     CGColorSpaceRelease(colorSpace);
     
     free(pixelBuffer);
     free(pixelBuffer2);
     
     CFRelease(inBitmapData);
-    
     CGImageRelease(imageRef);
     
     

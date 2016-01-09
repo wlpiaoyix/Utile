@@ -36,5 +36,5 @@ extern const NSString * _Nonnull PYColorMatrixCIVignetteEffect;
 /**
  毛玻璃
  */
--(UIImage * _Nonnull) applyEffect:(CGFloat)blur;
+-(UIImage * _Nonnull) applyEffect:(CGFloat)blur tintColor:(nullable UIColor *) tintColor;
 @end

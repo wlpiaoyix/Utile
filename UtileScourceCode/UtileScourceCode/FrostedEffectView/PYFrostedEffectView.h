@@ -10,6 +10,7 @@
 
 @interface PYFrostedEffectView : UIView
 @property (nonatomic) CGFloat effectValue;
+@property (nonnull, nonatomic,copy) UIColor * effectColor;
 -(void) refreshForstedEffect;
 
 @end

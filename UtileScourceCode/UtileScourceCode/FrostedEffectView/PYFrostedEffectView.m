@@ -19,25 +19,26 @@
 
 -(instancetype) init{
     if (self = [super init]) {
-        self.effectValue = .5;
-        self.imageForstedEffect = [UIImageView new];
-        [self.imageForstedEffect removeFromSuperview];
-        [self addSubview:self.imageForstedEffect];
+        [self initParams];
     }
     return self;
 }
 -(instancetype) initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.effectValue = .5;
-        self.imageForstedEffect = [UIImageView new];
-        [self.imageForstedEffect removeFromSuperview];
-        [self addSubview:self.imageForstedEffect];
+        [self initParams];
     }
     return self;
 }
+-(void) initParams{
+    self.effectValue = .5;
+    self.imageForstedEffect = [UIImageView new];
+    [self.imageForstedEffect removeFromSuperview];
+    self.backgroundColor = [UIColor clearColor];
+    self.effectColor = [UIColor clearColor];
+    [self addSubview:self.imageForstedEffect];
+}
 
 -(void) refreshForstedEffect{
-    self.backgroundColor = [UIColor clearColor];
     @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         @strongify(self);
@@ -55,7 +56,7 @@
             
             self.imageForstedEffect.frameSize = self.frameSize;
             self.imageForstedEffect.frameOrigin = CGPointMake(0, 0);
-            self.imageForstedEffect.image = [[self.superview drawViewWithBounds:visibleRect] applyEffect:self.effectValue];
+            self.imageForstedEffect.image = [[self.superview drawViewWithBounds:visibleRect] applyEffect:self.effectValue tintColor:self.effectColor];
             
             [PYFrostedEffectView toggleBlurViewsInView:self.superview hidden:NO alpha:alpha];
 

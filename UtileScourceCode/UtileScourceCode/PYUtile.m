@@ -229,6 +229,14 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
  简易发声
  */
 +(BOOL) soundWithPath:(NSString*) path isShake:(BOOL) isShake{
+    
+    if(isShake){
+        AudioServicesAddSystemSoundCompletion(kSystemSoundID_Vibrate, NULL, NULL, SoundFinished,nil);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
+    if (!path || [path isKindOfClass:[NSNull class]] || !path.length) {
+        return false;
+    }
     if(![[NSFileManager defaultManager] fileExistsAtPath:path]){
         return false;
     }
@@ -246,11 +254,6 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
         /*添加音频结束时的回调*/
         AudioServicesAddSystemSoundCompletion(shortSound, NULL, NULL, SoundFinished,nil);
         AudioServicesPlaySystemSound(shortSound);
-        if(isShake){
-            AudioServicesAddSystemSoundCompletion(kSystemSoundID_Vibrate, NULL, NULL, SoundFinished,nil);
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        }
-//        CFRunLoopRun();
     }
     return true;
     
