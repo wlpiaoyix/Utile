@@ -28,20 +28,24 @@ PYUTILE_STATIC_INLINE PYEdgeInsetsItem PYEdgeInsetsItemNull() {
 
 @interface PYViewAutolayoutCenter : NSObject
 /**
- 删除相关的约束
- */
-+(void) removeConstraints:(nonnull UIView*) subView;
-/**
  新增关系约束
  */
-+(void) persistConstraint:(nonnull UIView*) subView relationmargins:(UIEdgeInsets) margins relationToItems:(PYEdgeInsetsItem) toItems;
++(nonnull NSMutableArray<NSLayoutConstraint *> *) persistConstraint:(nonnull UIView*) subView relationmargins:(UIEdgeInsets) margins relationToItems:(PYEdgeInsetsItem) toItems;
 /**
  新增大小约束
  */
-+(void) persistConstraint:(nonnull UIView*) subView size:(CGSize) size;
++(nonnull NSMutableArray<NSLayoutConstraint *> *) persistConstraint:(nonnull UIView*) subView size:(CGSize) size;
 /*
  新增布局约束
  */
-+(void) persistConstraint:(nonnull UIView*) subView centerPointer:(CGPoint) pointer;
++(nonnull NSMutableArray<NSLayoutConstraint *> *) persistConstraint:(nonnull UIView*) subView centerPointer:(CGPoint) pointer;
+/**
+ 横向等比约束
+ */
++(void) persistConstraintHorizontal:(nonnull NSArray<UIView *> *)subViews relationmargins:(UIEdgeInsets) margins relationToItems:(PYEdgeInsetsItem) toItems offset:(CGFloat) offset;
+/**
+ 纵向等比约束
+ */
++(void) persistConstraintVertical:(nonnull NSArray<UIView *> *)subViews relationmargins:(UIEdgeInsets) margins relationToItems:(PYEdgeInsetsItem) toItems offset:(CGFloat) offset;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 wlpiaoyi. All rights reserved.
 //
 
-#import "RegexPredicate.h"
+#import "PYRegexPredicate.h"
 
 
 NSString * REGEX_HOMEHONE = @"^((\\d{2,4}\\-){0,1}\\d{7,9})$";
@@ -24,7 +24,7 @@ NSString * REGEX_HKMACCARD = @"^([a-zA-Z]\\d{8})$";
 NSString * REGEX_TWCARD = @"^[a-zA-Z0-9]{1,20}$";
 //护照
 NSString * REGEX_PASSPORT = @"^[A-Z\\d]{5,30}$";
-@implementation RegexPredicate
+@implementation PYRegexPredicate
 
 /**
  整数

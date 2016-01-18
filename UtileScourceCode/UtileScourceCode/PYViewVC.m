@@ -71,113 +71,22 @@
     
     
     [super viewDidLoad];
-    
-    
-    self.view01 = [PYDrawView new];
-    self.view01.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:self.view01];
-    self.view02 = [UIView new];
-    self.view02.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:self.view02];
-    self.gt = [PYGraphicsThumb graphicsThumbWithView:self.view block:^(CGContextRef ctx, id userInfo) {
-        NSNumber *index = userInfo;
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[index stringValue]];
-        CGRect rect = CGRectMake(20, 20, boundsWidth(), boundsHeight());
-        CGRect * rects = {&rect};
-        CGRect _rect = CGRectMake(20, 40, boundsWidth(), boundsHeight());
-        CGRect * _rects = {&_rect};
-        [PYGraphicsDraw drawTextWithContext:ctx attribute:attr rects:rects lenghtRect:1 y:boundsHeight() scaleFlag:YES];
-        [PYGraphicsDraw drawTextWithContext:ctx attribute:attr rects:_rects lenghtRect:1 y:boundsHeight() scaleFlag:YES];
-    }];
-//    NSArray *filters = [CIFilter filterNamesInCategory:kCICategoryGradient];
-//    self.imageOrg = self.imageView.image;
-    @weakify(self)
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        @strongify(self)
-//        @weakify(self)
-//        for (NSString *filterName in filters) {
-//            if ([filterName isEqualToString:@"CIAztecCodeGenerator"]) {
-//                continue;
-//            }
-//            // 耗时的操作
-//            @weakify(filterName);
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                @strongify(self)
-//                @strongify(filterName)
-//                UIImage *image = [UIImage imageWithImage:self.imageOrg colorMatrix: filterName];
-//                if (image) {
-//                    [self.imageView setImage:image];
-//                }
-//            });
-//            [NSThread sleepForTimeInterval:0.5f];
-//        }
-//    });
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @strongify(self)
-        @weakify(self)
-        __block NSUInteger index = 0;
-        while (true) {
-            index += 1;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @strongify(self)
-                [self.gt executDisplay:@(index)];
-            });
-            [NSThread sleepForTimeInterval:2];
-        }
-    });
-    
-    
-    [PYViewAutolayoutCenter persistConstraint:self.view01 relationmargins:UIEdgeInsetsMake(0, 20, DisableConstrainsValueMAX, 20) relationToItems:PYEdgeInsetsItemNull()];
-    [PYViewAutolayoutCenter persistConstraint:self.view01 size:CGSizeMake(DisableConstrainsValueMAX, 300)];
-
-    [PYViewAutolayoutCenter persistConstraint:self.view02 size:CGSizeMake(300, 10)];
-    [PYViewAutolayoutCenter persistConstraint:self.view02 centerPointer:CGPointMake(0, DisableConstrainsValueMAX)];
-    [PYViewAutolayoutCenter persistConstraint:self.view02 relationmargins:UIEdgeInsetsMake(20, DisableConstrainsValueMAX, DisableConstrainsValueMAX, DisableConstrainsValueMAX) relationToItems:PYEdgeInsetsItemMake((__bridge void * _Nullable)(self.view01), nil, nil, nil)];
-    
-    
-    [PYKeyboardNotification setKeyboardNotificationWithResponder:self.text start:^(CGRect keyBoardFrame) {
-        
-    } end:^(CGRect keyBoardFrame) {
-        
-    }];
-    UILabel *lable = [UILabel new];
-    lable.frame = CGRectMake(20, 200, 40, 40);
-    lable.textColor = [UIColor redColor];
-    lable.attributedText = [[NSAttributedString alloc] initWithString:@"a\nadlkfjaldkjfaldkjfaldjflaj\nsdfsd"];
-    [self.view addSubview:lable];
-    [lable automorphismWidth];
-    [lable automorphismHeight];
-    self.forview = [[PYFrostedEffectView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
-    UIView *view = [UIView new];
-    view.tag = 55;
-    view.frame = self.view.bounds;
-    [self.view addSubview:view];
-    view.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:self.forview];
-    self.forview.backgroundColor = [UIColor colorWithRed:1 green:1 blue:0 alpha:0.8];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @strongify(self)
-        @weakify(self)
-        __block NSUInteger index = 0;
-        while (true) {
-            index += 1;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @strongify(self)
-                self.forview.effectValue = 0.5;
-                [self.forview refreshForstedEffect];
-            });
-            [NSThread sleepForTimeInterval:2];
-        }
-    });
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1.jpg"]];
-//    imageView.frame = CGRectMake(0, 300, 320, 320);
-//    imageView.image = [imageView.image drn_boxblurImageWithBlur:1];
-//    [self.view addSubview:imageView];
-//    [UIView animateWithDuration:10 animations:^{
-//        view.frame = CGRectMake(300, 300, 320, 320);
-//    }];
+    UIView *view1 = [UIView new];
+    UIView *view2 = [UIView new];
+    UIView *view3 = [UIView new];
+    UIView *view4 = [UIView new];
+    UIView *view5 = [UIView new];
+    view1.backgroundColor = [UIColor redColor];
+    view2.backgroundColor = [UIColor yellowColor];
+    view3.backgroundColor = [UIColor blueColor];
+    view4.backgroundColor = [UIColor greenColor];
+    view5.backgroundColor = [UIColor orangeColor];
+    NSArray *array = @[view1, view2, view3, view4, view5];
+    for (UIView * view in array) {
+        [[self.view viewWithTag:55] addSubview:view];
+    }
+    [PYViewAutolayoutCenter persistConstraintVertical:array relationmargins:UIEdgeInsetsMake(0, 0, 0, 0) relationToItems:PYEdgeInsetsItemMake(nil, nil, nil, nil) offset:3];
+  
 }
 -(void) viewDidAppear:(BOOL)animated{
     [self.view drawView];

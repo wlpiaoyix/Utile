@@ -11,7 +11,7 @@
 /**
  正则表达式
  */
-@interface RegexPredicate : NSObject
+@interface PYRegexPredicate : NSObject
 /**
  整数
  */

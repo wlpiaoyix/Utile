@@ -20,13 +20,13 @@
 @property (nonatomic,strong) UIImage * thumb;
 @property (nonatomic,strong) CALayer *thumbLayer;
 @property (nonatomic,strong) PYGraphicsLayer *graphicsLayer;
-@property (nonatomic,strong) UIView *view;
+@property (nonatomic,weak) UIView *view;
 @property (nonatomic,copy) blockGraphicsLayerDraw block;
 @property (nonatomic,strong) id synBlock;
 @end
 
 @implementation PYGraphicsThumb
-+(instancetype) graphicsThumbWithView:(UIView*) view block:(blockGraphicsLayerDraw) block;{
++(nonnull instancetype) graphicsThumbWithView:(nonnull UIView*) view block:(nullable blockGraphicsLayerDraw) block{
     PYGraphicsThumb *gt = [PYGraphicsThumb new];
     gt.view = view;
     gt.block = block;
@@ -40,7 +40,7 @@
     }
     return self;
 }
--(void) executDisplay:(id) userInfo{
+-(void) executDisplay:(nullable id) userInfo{
     @synchronized(_synBlock) {
         [_view setNeedsLayout];
         if(self.graphicsLayer){
