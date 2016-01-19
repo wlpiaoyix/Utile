@@ -19,6 +19,8 @@
 #import <objc/message.h>
 #import "PYHook.h"
 #import "PYFrostedEffectView.h"
+#import "PYReachabilityListener.h"
+#import "PYOrientationListener.h"
 
 @interface PYDrawView:UIView
 @end
@@ -50,7 +52,7 @@
 @end
 
 
-@interface PYViewVC ()
+@interface PYViewVC ()<PYReachabilityListener, PYOrientationListener>
 @property (nonatomic,strong) UIImage *imageOrg;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *text;
@@ -86,6 +88,8 @@
         [[self.view viewWithTag:55] addSubview:view];
     }
     [PYViewAutolayoutCenter persistConstraintVertical:array relationmargins:UIEdgeInsetsMake(0, 0, 0, 0) relationToItems:PYEdgeInsetsItemMake(nil, nil, nil, nil) offset:3];
+    [[PYReachabilityListener instanceSingle] addListener:self];
+    [[PYOrientationListener instanceSingle] addListener:self];
   
 }
 -(void) viewDidAppear:(BOOL)animated{
@@ -99,14 +103,39 @@
     return CGPointMake(a.x, a.y * 2);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/**
+ 没有网络
+ */
+-(void) notReachable{
+    
 }
-*/
+/**
+ 2G/3G/4G网络
+ */
+-(void) reachableViaWWAN{
+    
+}
+/**
+ WIFI/WLAN网络
+ */
+-(void) reachableViaWiFi{
+    
+}
 
+// Device oriented vertically, home button on the bottom
+-(void) deviceOrientationPortrait{
+}
+// Device oriented vertically, home button on the top
+-(void) deviceOrientationPortraitUpsideDown{
+}
+// Device oriented horizontally, home button on the right
+-(void) deviceOrientationLandscapeLeft{
+}
+// Device oriented horizontally, home button on the left
+-(void) deviceOrientationLandscapeRight{
+}
+// Device oriented horizontally, home button not support
+-(void) deviceOrientationNotSupport:(UIDeviceOrientation) deviceOrientation{
+
+}
 @end

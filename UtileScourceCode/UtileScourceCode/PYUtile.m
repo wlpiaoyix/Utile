@@ -177,39 +177,39 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
     return source;
 }
 
-//==>等待框
-+(void) showProgress:(NSString*) message{
-    @synchronized(synProgressObj){
-        UIViewController *topVC = [PYUtile getCurrentController];
-        if (!topVC) {
-            return;
-        }
-        topVC.view.userInteractionEnabled=NO;
-        MBProgressHUD * myMBProgressHUD;
-        if (LastActivityIndicatorView) {
-            [self hiddenProgress];
-        }
-        if (!myMBProgressHUD) {
-            myMBProgressHUD = [[MBProgressHUD alloc] initWithView:topVC.view];
-            myMBProgressHUD.tag = MyMBProgressHUDTAG;
-        }
-        [topVC.view addSubview:myMBProgressHUD];
-        [topVC.view bringSubviewToFront:myMBProgressHUD];
-        myMBProgressHUD.labelText =  message ? message : @"请等待...";
-        [myMBProgressHUD show:YES];
-        LastActivityIndicatorView = topVC.view;
-    }
-}
-+(void) hiddenProgress{
-    @synchronized(synProgressObj){
-        LastActivityIndicatorView.userInteractionEnabled=YES;
-        MBProgressHUD * tempMBProgressHUD =(MBProgressHUD *)[LastActivityIndicatorView viewWithTag:MyMBProgressHUDTAG];
-        if (tempMBProgressHUD != nil) {
-            [tempMBProgressHUD removeFromSuperview];
-        }
-    }
-}
-//<==
+////==>等待框
+//+(void) showProgress:(NSString*) message{
+//    @synchronized(synProgressObj){
+//        UIViewController *topVC = [PYUtile getCurrentController];
+//        if (!topVC) {
+//            return;
+//        }
+//        topVC.view.userInteractionEnabled=NO;
+//        MBProgressHUD * myMBProgressHUD;
+//        if (LastActivityIndicatorView) {
+//            [self hiddenProgress];
+//        }
+//        if (!myMBProgressHUD) {
+//            myMBProgressHUD = [[MBProgressHUD alloc] initWithView:topVC.view];
+//            myMBProgressHUD.tag = MyMBProgressHUDTAG;
+//        }
+//        [topVC.view addSubview:myMBProgressHUD];
+//        [topVC.view bringSubviewToFront:myMBProgressHUD];
+//        myMBProgressHUD.labelText =  message ? message : @"请等待...";
+//        [myMBProgressHUD show:YES];
+//        LastActivityIndicatorView = topVC.view;
+//    }
+//}
+//+(void) hiddenProgress{
+//    @synchronized(synProgressObj){
+//        LastActivityIndicatorView.userInteractionEnabled=YES;
+//        MBProgressHUD * tempMBProgressHUD =(MBProgressHUD *)[LastActivityIndicatorView viewWithTag:MyMBProgressHUDTAG];
+//        if (tempMBProgressHUD != nil) {
+//            [tempMBProgressHUD removeFromSuperview];
+//        }
+//    }
+//}
+////<==
 /**
  添加不向服务器备份的Document下的路径
  */

@@ -87,10 +87,6 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
  汉字转拼音
  */
 + (NSString *) chineseToSpell:(NSString*)sourceString;
-//==>等待框
-+(void) showProgress:(NSString*) message;
-+(void) hiddenProgress;
-//<==
 /**
  添加不向服务器备份的Document下的路径
  */
