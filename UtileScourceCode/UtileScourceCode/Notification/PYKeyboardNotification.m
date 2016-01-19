@@ -7,6 +7,7 @@
 //
 
 #import "PYKeyboardNotification.h"
+#import "PYReflect.h"
 #import <objc/runtime.h>
 
 @protocol PYNOtifactionProtocolTag <NSObject>@end
@@ -25,7 +26,7 @@ void hook_dealloc(UIResponder *responder, SEL action){
     [PYKeyboardNotification removeKeyboardNotificationWithResponder:responder];
     SEL hook = sel_getUid("hook_dealloc");
     if ([responder respondsToSelector:hook]) {
-        [responder performSelector:hook];
+        [PYReflect invoke:responder action:hook returnValue:nil params:nil];
     }
 }
 

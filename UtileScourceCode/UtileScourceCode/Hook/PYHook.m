@@ -106,12 +106,24 @@ SEL py_gethookSel(SEL action){
         
         Method method = class_getInstanceMethod(target, action);
         const char * typeEncoding =  method_getTypeEncoding(method);
-        
         IMP impPrevious = class_replaceMethod(target, action, _objc_msgForward, typeEncoding);
-        
         SEL hooksel = py_gethookSel(action);
-        class_addMethod(target, hooksel, impPrevious, typeEncoding);
-        
+        class_addMethod(target, hooksel, method_getImplementation(method), typeEncoding);
+        if (!impPrevious) {//预防影响其他继承Class调用这个方法出问题
+            Class superClass = class_getSuperclass(target);
+            Method superMethod = class_getInstanceMethod(superClass, action);
+            IMP superImp = method_getImplementation(superMethod);
+            impPrevious = superImp;
+            while(superClass && superImp == impPrevious) {
+                
+                impPrevious = superImp;
+                
+                superClass = class_getSuperclass(superClass);
+                superMethod = class_getInstanceMethod(superClass, action);
+                superImp = method_getImplementation(superMethod);
+            }
+            class_addMethod(superClass, hooksel, impPrevious, typeEncoding);
+        }
         [self setHookInstance:dict target:target action:action];
         
         return impPrevious ? true : false;
@@ -127,11 +139,17 @@ SEL py_gethookSel(SEL action){
         }else{
             return false;
         }
-        
+        SEL hooksel = py_gethookSel(action);
         Method method1 = class_getInstanceMethod(target, action);
-        Method method2 = class_getInstanceMethod(target, py_gethookSel(action));
+        Method method2 = class_getInstanceMethod(target, hooksel);
         method_exchangeImplementations(method1, method2);
-        class_replaceMethod(target, py_gethookSel(action), _objc_msgForward, method_getTypeEncoding(method2));
+        class_replaceMethod(target, hooksel, _objc_msgForward, method_getTypeEncoding(method2));
+//        Class superClass = target;
+//        Class hookClass;
+//        while((superClass = class_getSuperclass(superClass)) && class_getMethodImplementation(superClass, hooksel)) {
+//            hookClass = superClass;
+//        }
+//        class_replaceMethod(hookClass, hooksel, nil, method_getTypeEncoding(method2));
     }
     return true;
 }

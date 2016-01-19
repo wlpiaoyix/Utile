@@ -21,6 +21,7 @@
 		15632BDA1C4D1EBE006D3B09 /* PYReachabilityListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 15632BD61C4D19CE006D3B09 /* PYReachabilityListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15632BDB1C4D1F4B006D3B09 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BD41C4D1997006D3B09 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15632BDC1C4D1F67006D3B09 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 15632BD31C4D1997006D3B09 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15632BDF1C4DE3E9006D3B09 /* PYMotionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */; };
 		157886CC1BD9E18300B91D76 /* PYViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 157886CB1BD9E18300B91D76 /* PYViewVC.m */; };
 		15902FBA1C07030300CAEF89 /* NSDictionary+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15902FB91C07030300CAEF89 /* NSDictionary+Expand.m */; };
 		15902FBD1C07036E00CAEF89 /* NSData+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15902FBC1C07036E00CAEF89 /* NSData+Expand.m */; };
@@ -144,6 +145,8 @@
 		15632BD41C4D1997006D3B09 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		15632BD61C4D19CE006D3B09 /* PYReachabilityListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYReachabilityListener.h; sourceTree = "<group>"; };
 		15632BD71C4D19CE006D3B09 /* PYReachabilityListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYReachabilityListener.m; sourceTree = "<group>"; };
+		15632BDD1C4DE3E9006D3B09 /* PYMotionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMotionListener.h; sourceTree = "<group>"; };
+		15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMotionListener.m; sourceTree = "<group>"; };
 		157886CA1BD9E18300B91D76 /* PYViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYViewVC.h; sourceTree = "<group>"; };
 		157886CB1BD9E18300B91D76 /* PYViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYViewVC.m; sourceTree = "<group>"; };
 		15902FB81C07030300CAEF89 /* NSDictionary+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Expand.h"; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				15632BCF1C4D1606006D3B09 /* PYOrientationListener.m */,
 				15632BD61C4D19CE006D3B09 /* PYReachabilityListener.h */,
 				15632BD71C4D19CE006D3B09 /* PYReachabilityListener.m */,
+				15632BDD1C4DE3E9006D3B09 /* PYMotionListener.h */,
+				15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */,
 			);
 			path = Listener;
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 				15A44B301BE8A2A1007D6E4A /* NSDate+Expand.m in Sources */,
 				15A44B391BE8A2A1007D6E4A /* UILable+Expand.m in Sources */,
 				15A44B3A1BE8A2A1007D6E4A /* UIView+Expand.m in Sources */,
+				15632BDF1C4DE3E9006D3B09 /* PYMotionListener.m in Sources */,
 				15632BD01C4D1606006D3B09 /* PYOrientationListener.m in Sources */,
 				157886CC1BD9E18300B91D76 /* PYViewVC.m in Sources */,
 				15902FC41C070E9C00CAEF89 /* NSArray+Expand.m in Sources */,

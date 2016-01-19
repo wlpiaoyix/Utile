@@ -14,6 +14,7 @@
 #import "NSData+Expand.h"
 #import "PYHook.h"
 #import <objc/runtime.h>
+#import "PYMotionListener.h"
 
 
 
@@ -26,17 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [PYUtile soundWithPath:nil isShake:true];
-//    NSDate *date = [NSDate date];
-//    date = [date setCompentsWithBinary:0b100011];
-    
-//    NSDictionary *info = [PYUtile getInfoPlistWithName:@"Info"];
-//    CGRect r;
-//    char *type;
-//    id inocke = [PYReflect startInvoke:self action:@selector(getRect)];
-//    [PYReflect excuInvoke:&r returnType:&type invocation:inocke];
-//    NSArray *a = [PYReflect getInstanceMethodInfosWithClass:self.class];
-//    [PYReflect getInstanceMethodWithClass:self.class selUid:@selector(application:didFinishLaunchingWithOptions:)];
-//    NSString *kk = [[NSDate date] dateFormateDate:@"EE"];
+    [PYMotionListener instanceSingle];
     return YES;
 }
 

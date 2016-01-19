@@ -66,7 +66,6 @@ static PYOrientationListener *xPYOrientationListener;
  */
 -(BOOL) isSupportOrientation:(UIDeviceOrientation) _orientation_{
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
     if (vc && [vc isKindOfClass:[UINavigationController class]]) {
         vc = [((UINavigationController*)vc).viewControllers count] > 0 ? ((UINavigationController*)vc).viewControllers.lastObject : nil;
     }
