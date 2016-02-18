@@ -22,10 +22,10 @@ const NSString * PYNotifactionTableKeyBlockEnd = @"dfkj";
 const NSString * PYNotifactionTableKeyBlockCompletionStart = @"dfkjsdj";
 const NSString * PYNotifactionTableKeyBlockCompletionEnd = @"dfkjdf";
 
-void hook_dealloc(UIResponder *responder, SEL action){
+void pykeybn_hook_dealloc(UIResponder *responder, SEL action){
     [PYKeyboardNotification hiddenKeyboard];
     [PYKeyboardNotification removeKeyboardNotificationWithResponder:responder];
-    SEL hook = sel_getUid("hook_dealloc");
+    SEL hook = sel_getUid("pykeybn_hook_dealloc");
     if ([responder respondsToSelector:hook]) {
         [PYReflect invoke:responder action:hook returnValue:nil params:nil];
     }
@@ -114,6 +114,12 @@ void hook_dealloc(UIResponder *responder, SEL action){
         return;
     }
     UIResponder *responder = (UIResponder*)self;
+    
+    //如果对象没有获取到焦点就不执行事件
+    if (![responder isFirstResponder]) {
+        return;
+    }
+    
     NSNumber *key  = [PYKeyboardNotification getKeyWithResponder:responder];
     
     BlockKeyboardAnimatedDoing block = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockStart];
@@ -129,15 +135,18 @@ void hook_dealloc(UIResponder *responder, SEL action){
     
     @unsafeify(block);
     @unsafeify(completionBlock);
+    @unsafeify(responder);
     [UIView animateWithDuration:animationTime>0?animationTime:0.25 animations:^{
         @strongify(block);
+        @strongify(responder);
         if (block) {
-            block(keyBoardFrame);
+            block(responder,keyBoardFrame);
         }
     } completion:^(BOOL finished) {
         @strongify(completionBlock);
+        @strongify(responder);
         if (completionBlock) {
-            completionBlock();
+            completionBlock(responder);
         }
     }];
     
@@ -149,6 +158,12 @@ void hook_dealloc(UIResponder *responder, SEL action){
         return;
     }
     UIResponder *responder = (UIResponder*)self;
+    
+    //如果对象没有获取到焦点就不执行事件
+    if (![responder isFirstResponder]) {
+        return;
+    }
+    
     NSNumber *key  = [PYKeyboardNotification getKeyWithResponder:responder];
     __block BlockKeyboardAnimatedDoing block = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockEnd];
     __block BlockKeyboardAnimatedCompletion completionBlock = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockCompletionEnd];
@@ -163,15 +178,18 @@ void hook_dealloc(UIResponder *responder, SEL action){
     
     @unsafeify(block);
     @unsafeify(completionBlock);
+    @unsafeify(responder);
     [UIView animateWithDuration:animationTime>0?animationTime:0.25 animations:^{
         @strongify(block);
+        @strongify(responder);
         if (block) {
-            block(keyBoardFrame);
+            block(responder,keyBoardFrame);
         }
     } completion:^(BOOL finished) {
         @strongify(completionBlock);
+        @strongify(responder);
         if (completionBlock) {
-            completionBlock();
+            completionBlock(responder);
         }
     }];
     
@@ -185,7 +203,7 @@ void hook_dealloc(UIResponder *responder, SEL action){
             SEL hookDeallocSEL = sel_getUid("hook_dealloc");
             Method orgm = class_getInstanceMethod([responder class], deallocSEL);
             const char * typeEncoding = method_getTypeEncoding(orgm);
-            IMP hookDeallocImp = (IMP)hook_dealloc;
+            IMP hookDeallocImp = (IMP)pykeybn_hook_dealloc;
             class_addMethod([responder class], hookDeallocSEL, hookDeallocImp, typeEncoding);
             Method hookm = class_getInstanceMethod([responder class], hookDeallocSEL);
             method_exchangeImplementations(orgm, hookm);

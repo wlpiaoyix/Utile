@@ -21,6 +21,7 @@
 #import "PYFrostedEffectView.h"
 #import "PYReachabilityListener.h"
 #import "PYOrientationListener.h"
+#import "PYKeyboardNotification.h"
 
 @interface PYDrawView:UIView
 @end
@@ -56,6 +57,7 @@
 @property (nonatomic,strong) UIImage *imageOrg;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *text;
+@property (strong, nonatomic) UITextField *text2;
 @property (nonatomic) UIView *view01;
 @property (nonatomic) UIView *view02;
 @property (nonatomic) UIView *view03;
@@ -90,10 +92,16 @@
     [PYViewAutolayoutCenter persistConstraintVertical:array relationmargins:UIEdgeInsetsMake(0, 0, 0, 0) relationToItems:PYEdgeInsetsItemMake(nil, nil, nil, nil) offset:3];
     [[PYReachabilityListener instanceSingle] addListener:self];
     [[PYOrientationListener instanceSingle] addListener:self];
+    
+    self.text2 = [UITextField new];
+    [self.view addSubview:self.text2];
+    
   
 }
 -(void) viewDidAppear:(BOOL)animated{
     [self.view drawView];
+    [self.text2 removeFromSuperview];
+    self.text2 = nil;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

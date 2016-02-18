@@ -41,14 +41,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UtileScourceCode/UtileScourceCode/Hook/PYHook.m"
-            timestampString = "477468065.083689"
+            filePath = "UtileScourceCode/UtileScourceCode/PYViewVC.m"
+            timestampString = "477477249.718719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-hookforwardInvocation:"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UtileScourceCode/UtileScourceCode/Notification/PYKeyboardNotification.m"
+            timestampString = "477477314.975383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "pykeybn_hook_dealloc()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
