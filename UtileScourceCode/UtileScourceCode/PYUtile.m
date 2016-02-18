@@ -7,7 +7,6 @@
 //
 
 #import "PYUtile.h"
-#import "MBProgressHUD.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -20,8 +19,6 @@ double EARTH_RADIUS = 6378.137;//地球半径
 
 
 NSObject *synProgressObj;
-static UIView *LastActivityIndicatorView;
-static NSUInteger MyMBProgressHUDTAG = 95793642;
 
 float boundsWidth(){
     return CGRectGetWidth([UIScreen mainScreen].bounds);
@@ -70,7 +67,6 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
  获取plist文件的类容
  */
 +(NSDictionary*) getInfoPlistWithName:(NSString*) name{
-    NSLog(@"adf%d",1);
     NSDictionary* dictInfoPlist;
     @synchronized(dictionaryInfoPlist) {
         dictInfoPlist = dictionaryInfoPlist[name];
@@ -132,6 +128,17 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
         return [txt sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     }
 }
+//计算文字占用的大小
++(CGSize) getBoundSizeWithAttributeTxt:(nonnull NSAttributedString *) attributeTxt size:(CGSize) size{
+    if (IOS7_OR_LATER) {
+        NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine|
+        NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+        return [attributeTxt boundingRectWithSize:size options:options context:nil].size;
+    }else{
+        NSAssert(false, @"不支持文字排列空间计算");
+        return CGSizeZero;
+    }
+}
 /**
  计算指定字体大小对应的高度
  */
@@ -177,39 +184,6 @@ double parseCoordinateToDistance(double lat1, double lng1, double lat2, double l
     return source;
 }
 
-////==>等待框
-//+(void) showProgress:(NSString*) message{
-//    @synchronized(synProgressObj){
-//        UIViewController *topVC = [PYUtile getCurrentController];
-//        if (!topVC) {
-//            return;
-//        }
-//        topVC.view.userInteractionEnabled=NO;
-//        MBProgressHUD * myMBProgressHUD;
-//        if (LastActivityIndicatorView) {
-//            [self hiddenProgress];
-//        }
-//        if (!myMBProgressHUD) {
-//            myMBProgressHUD = [[MBProgressHUD alloc] initWithView:topVC.view];
-//            myMBProgressHUD.tag = MyMBProgressHUDTAG;
-//        }
-//        [topVC.view addSubview:myMBProgressHUD];
-//        [topVC.view bringSubviewToFront:myMBProgressHUD];
-//        myMBProgressHUD.labelText =  message ? message : @"请等待...";
-//        [myMBProgressHUD show:YES];
-//        LastActivityIndicatorView = topVC.view;
-//    }
-//}
-//+(void) hiddenProgress{
-//    @synchronized(synProgressObj){
-//        LastActivityIndicatorView.userInteractionEnabled=YES;
-//        MBProgressHUD * tempMBProgressHUD =(MBProgressHUD *)[LastActivityIndicatorView viewWithTag:MyMBProgressHUDTAG];
-//        if (tempMBProgressHUD != nil) {
-//            [tempMBProgressHUD removeFromSuperview];
-//        }
-//    }
-//}
-////<==
 /**
  添加不向服务器备份的Document下的路径
  */

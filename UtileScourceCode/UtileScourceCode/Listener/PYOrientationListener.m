@@ -7,6 +7,7 @@
 //
 
 #import "PYOrientationListener.h"
+#import "PYUtile.h"
 
 static PYOrientationListener *xPYOrientationListener;
 
@@ -61,32 +62,6 @@ static PYOrientationListener *xPYOrientationListener;
         });
     }
 }
-/**
- 是否支持旋转到当前方向
- */
--(BOOL) isSupportOrientation:(UIDeviceOrientation) _orientation_{
-    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if (vc && [vc isKindOfClass:[UINavigationController class]]) {
-        vc = [((UINavigationController*)vc).viewControllers count] > 0 ? ((UINavigationController*)vc).viewControllers.lastObject : nil;
-    }
-    
-    if (!vc) {
-        return false;
-    }
-    
-    UIInterfaceOrientationMask  supportedOrientations=  [vc supportedInterfaceOrientations];
-    NSInteger all = supportedOrientations;
-    NSInteger cur = 1 << (NSInteger)_orientation_;
-    if (!(all&cur)) {
-        return false;
-    }
-    supportedOrientations = [vc supportedInterfaceOrientations];
-    all = supportedOrientations;
-    if (!(all&cur)) {
-        return false;
-    }
-    return true;
-}
 -(void) addListener:(id<PYOrientationListener>) listener{
     @synchronized(self.tableListeners){
         if ([self.tableListeners containsObject:listener]) {
@@ -105,27 +80,27 @@ static PYOrientationListener *xPYOrientationListener;
 - (void)orientationChanged:(NSNotification *)note{
     @synchronized(self.tableListeners){
         UIDeviceOrientation _orientation_ = [[UIDevice currentDevice] orientation];
-        BOOL isSupportOrientation = [self isSupportOrientation:_orientation_];
+        BOOL isSupportOrientation = [PYOrientationListener isSupportOrientation:_orientation_];
         _orientation  = _orientation_;
         for (id<PYOrientationListener> listener in self.tableListeners) {
             if (isSupportOrientation) {
                 switch (_orientation) {
-                        // Device oriented vertically, home button on the bottom
+                    // Device oriented vertically, home button on the bottom
                     case UIDeviceOrientationPortrait:{
                         if([listener respondsToSelector:@selector(deviceOrientationPortrait)])[listener deviceOrientationPortrait];
                     }
                         break;
-                        // Device oriented vertically, home button on the top
+                    // Device oriented vertically, home button on the top
                     case UIDeviceOrientationPortraitUpsideDown:{
                         if([listener respondsToSelector:@selector(deviceOrientationPortraitUpsideDown)])[listener deviceOrientationPortraitUpsideDown];
                     }
                         break;
-                        // Device oriented horizontally, home button on the right
+                    // Device oriented horizontally, home button on the right
                     case UIDeviceOrientationLandscapeLeft:{
                         if([listener respondsToSelector:@selector(deviceOrientationLandscapeLeft)])[listener deviceOrientationLandscapeLeft];
                     }
                         break;
-                        // Device oriented horizontally, home button on the left
+                    // Device oriented horizontally, home button on the left
                     case UIDeviceOrientationLandscapeRight:{
                         if([listener respondsToSelector:@selector(deviceOrientationLandscapeRight)])[listener deviceOrientationLandscapeRight];
                     }
@@ -139,6 +114,38 @@ static PYOrientationListener *xPYOrientationListener;
             }
         }
     }
+}
+
+/**
+ 是否支持旋转到当前方向
+ */
++(BOOL) isSupportOrientation:(UIDeviceOrientation) _orientation_{
+    UIViewController *vc = [PYUtile getCurrentController];
+    
+    if (!vc) {
+        return false;
+    }
+    
+    return [self isSupportOrientation:_orientation_ targetController:vc];
+}
+/**
+ 是否支持旋转到当前方向
+ */
++(BOOL) isSupportOrientation:(UIDeviceOrientation) orientation targetController:(nonnull UIViewController *) targetController{
+    
+    UIInterfaceOrientationMask supportedOrientations = [[UIApplication sharedApplication].keyWindow.rootViewController supportedInterfaceOrientations];
+    
+    NSInteger currentOrientation = 2 << orientation;
+    if (!(supportedOrientations & currentOrientation)) {
+        return false;
+    }
+    
+    supportedOrientations = [targetController supportedInterfaceOrientations];
+    if (!(supportedOrientations & currentOrientation)) {
+        return false;
+    }
+    
+    return true;
 }
 
 -(void) dealloc{

@@ -82,7 +82,7 @@ NSString * REGEX_PASSPORT = @"^[A-Z\\d]{5,30}$";
 }
 
 +(BOOL) matchArg:(NSString*) arg regex:(NSString*) regex{
-    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:arg];
 }
 @end

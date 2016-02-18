@@ -8,6 +8,7 @@
 
 #import "PYKeyboardNotification.h"
 #import "PYReflect.h"
+#import "EXTScope.h"
 #import <objc/runtime.h>
 
 @protocol PYNOtifactionProtocolTag <NSObject>@end
@@ -115,8 +116,8 @@ void hook_dealloc(UIResponder *responder, SEL action){
     UIResponder *responder = (UIResponder*)self;
     NSNumber *key  = [PYKeyboardNotification getKeyWithResponder:responder];
     
-    __block BlockKeyboardAnimatedDoing block = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockStart];
-    __block BlockKeyboardAnimatedCompletion completionBlock = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockCompletionStart];
+    BlockKeyboardAnimatedDoing block = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockStart];
+    BlockKeyboardAnimatedCompletion completionBlock = [[PYNotifactionTableBlock objectForKey:key] objectForKey:PYNotifactionTableKeyBlockCompletionStart];
     if (!block && !completionBlock ) {
         return;
     }
@@ -125,11 +126,16 @@ void hook_dealloc(UIResponder *responder, SEL action){
     if (keyBoardFrame.size.height == 0) {
         return;
     }
+    
+    @unsafeify(block);
+    @unsafeify(completionBlock);
     [UIView animateWithDuration:animationTime>0?animationTime:0.25 animations:^{
+        @strongify(block);
         if (block) {
             block(keyBoardFrame);
         }
     } completion:^(BOOL finished) {
+        @strongify(completionBlock);
         if (completionBlock) {
             completionBlock();
         }
@@ -154,11 +160,16 @@ void hook_dealloc(UIResponder *responder, SEL action){
     if (keyBoardFrame.size.height == 0) {
         return;
     }
+    
+    @unsafeify(block);
+    @unsafeify(completionBlock);
     [UIView animateWithDuration:animationTime>0?animationTime:0.25 animations:^{
+        @strongify(block);
         if (block) {
             block(keyBoardFrame);
         }
     } completion:^(BOOL finished) {
+        @strongify(completionBlock);
         if (completionBlock) {
             completionBlock();
         }

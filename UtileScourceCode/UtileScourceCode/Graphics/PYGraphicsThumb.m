@@ -9,20 +9,20 @@
 #import "PYGraphicsThumb.h"
 
 @interface PYGraphicsLayer: CALayer
-@property (nonatomic,strong) id userInfo;
-@property (nonatomic,copy) blockGraphicsLayerDraw block;
-@property (nonatomic,strong) id synBlock;
+@property (nonatomic, strong) id userInfo;
+@property (nonatomic, copy) blockGraphicsLayerDraw block;
+@property (nonatomic, strong) id synBlock;
 -(void) setBlockGraphicsLayerDraw:(blockGraphicsLayerDraw) block;
 @end
 
 
 @interface PYGraphicsThumb()
-@property (nonatomic,strong) UIImage * thumb;
-@property (nonatomic,strong) CALayer *thumbLayer;
-@property (nonatomic,strong) PYGraphicsLayer *graphicsLayer;
-@property (nonatomic,weak) UIView *view;
-@property (nonatomic,copy) blockGraphicsLayerDraw block;
-@property (nonatomic,strong) id synBlock;
+@property (nonatomic, strong) UIImage * thumb;
+@property (nonatomic, strong) CALayer *thumbLayer;
+@property (nonatomic, strong) PYGraphicsLayer *graphicsLayer;
+@property (nonatomic, weak) UIView *view;
+@property (nonatomic, copy) blockGraphicsLayerDraw block;
+@property (nonatomic, strong) id synBlock;
 @end
 
 @implementation PYGraphicsThumb
@@ -40,7 +40,7 @@
     }
     return self;
 }
--(void) executDisplay:(nullable id) userInfo{
+-(nonnull CALayer *) executDisplay:(nullable id) userInfo{
     @synchronized(_synBlock) {
         [_view setNeedsLayout];
         if(self.graphicsLayer){
@@ -59,6 +59,7 @@
         [self.graphicsLayer displayIfNeeded];
         [self.graphicsLayer setNeedsDisplay];
     }
+    return self.graphicsLayer;
 }
 
 

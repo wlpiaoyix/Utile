@@ -15,10 +15,13 @@
 #import "PYHook.h"
 #import <objc/runtime.h>
 #import "PYMotionListener.h"
+#import "UIViewController+HookOrientation.h"
 
 
 
 @interface AppDelegate ()
+
+@property (nonatomic) NSString * index;
 
 @end
 
@@ -26,8 +29,17 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [PYUtile soundWithPath:nil isShake:true];
-    [PYMotionListener instanceSingle];
+//    [PYUtile soundWithPath:nil isShake:true];
+//    [PYMotionListener instanceSingle];
+//    [PYHook createClassImp];
+    [PYHook mergeHookInstanceWithTarget:[self class] action:@selector(setIndex:) blockBefore:^BOOL(NSInvocation * _Nonnull invoction) {
+        return true;
+    } blockAfter:^(NSInvocation * _Nonnull invoction) {
+        
+    }];
+    self.index = @"DD";
+    
+    [UIViewController hookMethodOrientation];
     return YES;
 }
 
