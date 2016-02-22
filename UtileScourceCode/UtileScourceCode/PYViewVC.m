@@ -96,6 +96,20 @@
     self.text2 = [UITextField new];
     [self.view addSubview:self.text2];
     
+    [PYHook mergeHookInstanceWithTarget:[self class] action:@selector(b:) blockBefore:^BOOL(NSInvocation * _Nonnull invoction) {
+        NSLog(@"");
+        return true;
+    } blockAfter:^(NSInvocation * _Nonnull invoction) {
+        NSLog(@"");
+    }];
+    
+    @try {
+        [self b:2.0];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"");
+    }
+    
   
 }
 -(void) viewDidAppear:(BOOL)animated{
@@ -107,8 +121,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(CGPoint) b:(CGPoint) a{
-    return CGPointMake(a.x, a.y * 2);
+-(CGPoint) b:(int) a{
+    @throw [[NSException alloc] initWithName:@"f" reason:@"a" userInfo:nil];
+    return CGPointMake(a, a * 2);
 }
 
 /**

@@ -56,14 +56,21 @@ SEL py_gethookSel(SEL action){
     dict = [PYHook getHookInstanceWithTarget:[self class] action:orSelector];
     blockBefore = dict[PYHookDictionaryKeyHookMethodBlockBefore];
     blockAfter = dict[PYHookDictionaryKeyHookMethodBlockAfter];
-    if (!blockBefore || (blockBefore && blockBefore(anInvocation))) {
-        //retain 所有参数，防止参数被释放dealloc
-        [anInvocation retainArguments];
-        //消息调用
-        [anInvocation invoke];
+    @try {
+        if (!blockBefore || (blockBefore && blockBefore(anInvocation))) {
+            //retain 所有参数，防止参数被释放dealloc
+            [anInvocation retainArguments];
+            //消息调用
+            [anInvocation invoke];
+        }
     }
-    if (blockAfter) {
-        blockAfter(anInvocation);
+    @catch (NSException *exception) {
+        @throw exception;
+    }
+    @finally {
+        if (blockAfter) {
+            blockAfter(anInvocation);
+        }
     }
 }
 
