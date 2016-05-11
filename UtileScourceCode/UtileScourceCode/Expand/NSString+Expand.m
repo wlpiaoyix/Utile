@@ -9,12 +9,93 @@
 #import "NSString+Expand.h"
 
 @implementation NSString (Expand)
-
+-(NSComparisonResult) compareVersion:(nullable NSString *) version{
+    if (![NSString isEnabled:version]) {
+        return true;
+    }
+    NSInteger currentValue = 0;
+    NSInteger targetValue = 0;
+    NSArray<NSString *> * currentArray = [self componentsSeparatedByString:@"."];
+    NSArray<NSString *> * targetArray = [version componentsSeparatedByString:@"."];
+    static const NSInteger value = 100;
+    NSInteger count = MAX(currentArray.count, targetArray.count);
+    for (NSString * _v_ in currentArray) {
+        --count;
+        currentValue += _v_.integerValue * pow(value, count);
+    }
+    
+    count = MAX(currentArray.count, targetArray.count);
+    for (NSString * _v_ in targetArray) {
+        --count;
+        targetValue += _v_.integerValue * pow(value, count);
+    }
+    if (targetValue > currentValue) {
+        return NSOrderedDescending;
+    }
+    if (targetValue < currentValue) {
+        return NSOrderedAscending;
+    }
+    return NSOrderedSame;
+}
 -(NSDate*) dateFormateString:(NSString*) formatePattern{
     NSDateFormatter *dft = [[NSDateFormatter alloc]init];
     [dft setDateFormat:formatePattern==nil?@"yyyy-MM-dd HH:mm:ss":formatePattern];
     return [dft dateFromString:self];
 }
++(bool) isEnabled:(nullable id) target{
+    if(!target||target==nil||target==[NSNull null]||[@"" isEqual:target])return NO;
+    else return YES;
+}
+-(NSString *)filterHTML
+{
+    NSString *html = self;
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO){
+        //找到标签的起始位置
+        [scanner scanUpToString:@"<" intoString:nil];
+        //找到标签的结束位置
+        [scanner scanUpToString:@">" intoString:&text];
+        //替换字符
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+//    NSString * regEx = @"<([^>]*)>";
+//    html = [html stringByReplacingOccurrencesOfString:regEx withString:@""];
+    return html;
+}
++ (nullable NSString*)base64forData:(nullable NSData *)theData {
+    const uint8_t* input = (const uint8_t*)[theData bytes];
+    NSInteger length = [theData length];
+    
+    static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    
+    NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
+    uint8_t* output = (uint8_t*)data.mutableBytes;
+    
+    NSInteger i;
+    for (i=0; i < length; i += 3) {
+        NSInteger value = 0;
+        NSInteger j;
+        for (j = i; j < (i + 3); j++) {
+            value <<= 8;
+            
+            if (j < length) {
+                value |= (0xFF & input[j]);
+            }
+        }
+        
+        NSInteger theIndex = (i / 3) * 4;
+        output[theIndex + 0] =                    table[(value >> 18) & 0x3F];
+        output[theIndex + 1] =                    table[(value >> 12) & 0x3F];
+        output[theIndex + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
+        output[theIndex + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
+    }
+    return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+}
+
+
+//==============================
+
 -(bool) stringEndWith:(NSString*) suffix{
     if(![NSString isEnabled:suffix]){
         return YES;
@@ -33,7 +114,7 @@
     if(toIndex>self.length){return NO;}
     if([suffix isEqual:[self substringToIndex: toIndex]])return YES;
     else return NO;
-
+    
 }
 
 -(int) intLastIndexOf:(char) suffix{
@@ -58,7 +139,7 @@
     }
     return 0;
 }
--(NSString*) replaceAll:(NSString*) target Replcement:(NSString*) replcement{
+-(nullable NSString*) replaceAll:(nonnull NSString*) target replcement:(nonnull NSString*) replcement{
     NSString *arg = [self replaceStringBy:self Target:target Replcement:replcement Index:0];
     return arg;
 }
@@ -92,55 +173,4 @@
         return arg;
     }
 }
-+(bool) isEnabled:(id) target{
-    if(!target||target==nil||target==[NSNull null]||[@"" isEqual:target])return NO;
-    else return YES;
-}
--(NSString *)filterHTML
-{
-    NSString *html = self;
-    NSScanner * scanner = [NSScanner scannerWithString:html];
-    NSString * text = nil;
-    while([scanner isAtEnd]==NO){
-        //找到标签的起始位置
-        [scanner scanUpToString:@"<" intoString:nil];
-        //找到标签的结束位置
-        [scanner scanUpToString:@">" intoString:&text];
-        //替换字符
-        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
-    }
-//    NSString * regEx = @"<([^>]*)>";
-//    html = [html stringByReplacingOccurrencesOfString:regEx withString:@""];
-    return html;
-}
-+ (NSString*)base64forData:(NSData*)theData {
-    const uint8_t* input = (const uint8_t*)[theData bytes];
-    NSInteger length = [theData length];
-    
-    static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    
-    NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
-    uint8_t* output = (uint8_t*)data.mutableBytes;
-    
-    NSInteger i;
-    for (i=0; i < length; i += 3) {
-        NSInteger value = 0;
-        NSInteger j;
-        for (j = i; j < (i + 3); j++) {
-            value <<= 8;
-            
-            if (j < length) {
-                value |= (0xFF & input[j]);
-            }
-        }
-        
-        NSInteger theIndex = (i / 3) * 4;
-        output[theIndex + 0] =                    table[(value >> 18) & 0x3F];
-        output[theIndex + 1] =                    table[(value >> 12) & 0x3F];
-        output[theIndex + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
-        output[theIndex + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
-    }
-    return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-}
-
 @end

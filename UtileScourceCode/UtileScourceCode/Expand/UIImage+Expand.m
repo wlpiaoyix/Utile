@@ -10,6 +10,10 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <Accelerate/Accelerate.h>
+#import "qrencode.h"
+enum {
+    qr_margin = 3
+};
 
 
 const NSString *PYColorMatrixCILinearToSRGBToneCurve = @"CILinearToSRGBToneCurve";
@@ -91,6 +95,63 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
     return image;
 }
 
+/**
+ 二维码
+ */
++(UIImage * _Nonnull) imageWithQRCode:(NSString * _Nonnull) QRCode size:(CGFloat) size{
+    if (![QRCode length]) {
+        return nil;
+    }
+    
+    QRcode *code = QRcode_encodeString([QRCode UTF8String], 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    if (!code) {
+        return nil;
+    }
+    
+    // create context
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, size * 4, colorSpace, kCGImageAlphaPremultipliedLast);
+    
+    CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -size);
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1, -1);
+    CGContextConcatCTM(ctx, CGAffineTransformConcat(translateTransform, scaleTransform));
+    
+    // draw QR on this context
+    unsigned char *data = 0;
+    int width;
+    data = code->data;
+    width = code->width;
+    float zoom = (double)size / (code->width + 2.0 * qr_margin);
+    CGRect rectDraw = CGRectMake(0, 0, zoom, zoom);
+    
+    // draw
+    CGContextSetFillColor(ctx, CGColorGetComponents([UIColor blackColor].CGColor));
+    for(int i = 0; i < width; ++i) {
+        for(int j = 0; j < width; ++j) {
+            if(*data & 1) {
+                rectDraw.origin = CGPointMake((j + qr_margin) * zoom,(i + qr_margin) * zoom);
+                CGContextAddRect(ctx, rectDraw);
+            }
+            ++data;
+        }
+    }
+    CGContextFillPath(ctx);
+    
+    
+    // get image
+    CGImageRef qrCGImage = CGBitmapContextCreateImage(ctx);
+    UIImage * qrImage = [UIImage imageWithCGImage:qrCGImage];
+    
+    // some releases
+    CGContextRelease(ctx);
+    CGImageRelease(qrCGImage);
+    CGColorSpaceRelease(colorSpace);
+    QRcode_free(code);
+    
+    return qrImage;
+
+}
+
 //==>滤镜功能
 + (UIImage*)imageWithImage:(UIImage*)inImage colorMatrix:(NSString*) colorMatrix {
     CGRect rectMatix = CGRectMake(0, 0, 0, 0);
@@ -128,12 +189,10 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
  @blur 透明度
  @tintColor 毛玻璃颜色
  */
+
+
+
 -(UIImage * _Nonnull) applyEffect:(CGFloat)blur tintColor:(nullable UIColor *) tintColor{
-    if (blur < 0.f || blur > 1.f) {
-        blur = 0.5f;
-    }
-    int boxSize = (int)(blur * 40);
-    boxSize = boxSize - (boxSize % 2) + 1;
     
     CGImageRef img = self.CGImage;
     vImage_Buffer inBuffer, outBuffer;
@@ -170,6 +229,13 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
     outBuffer2.height = CGImageGetHeight(img);
     outBuffer2.rowBytes = CGImageGetBytesPerRow(img);
     
+    
+    if (blur < 0.f || blur > 1.f) {
+        blur = 0.5f;
+    }
+    uint32_t boxSize = (uint32_t)(blur * MIN(outBuffer.width, outBuffer2.height) * .1);
+    boxSize = boxSize - (boxSize % 2) + 1;
+    
     //perform convolution
     error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer2, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
     error = vImageBoxConvolve_ARGB8888(&outBuffer2, &inBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
@@ -187,8 +253,6 @@ const NSString *PYColorMatrixCIVignetteEffect = @"CIVignetteEffect";
                                              outBuffer.rowBytes,
                                              colorSpace,
                                              kCGImageAlphaNoneSkipLast);
-    
-    
     
     // Add in color tint.
     if (tintColor) {

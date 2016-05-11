@@ -15,7 +15,7 @@
 #import "PYHook.h"
 #import <objc/runtime.h>
 #import "PYMotionListener.h"
-#import "UIViewController+HookOrientation.h"
+#import "NSString+Expand.h"
 
 
 
@@ -29,6 +29,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSString *a = @"4.10";
+    NSString * b = @"4.9.1";
+    [a compareVersion:b];
+    NSString * uuid = PYUUID(10);
 //    [PYUtile soundWithPath:nil isShake:true];
 //    [PYMotionListener instanceSingle];
 //    [PYHook createClassImp];
@@ -39,7 +43,6 @@
     }];
     self.index = @"DD";
     
-    [UIViewController hookMethodOrientation];
     return YES;
 }
 
@@ -64,5 +67,39 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (NSString *)analysisTokenWithURL:(NSURL *)url{
+    NSString *str = [url absoluteString];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    
+    NSArray *arr = [str componentsSeparatedByString:[NSString stringWithFormat:@"%@://",app_Name]];
+    NSString *token = arr.lastObject;
+    
+    return [self decodeFromPercentEscapeString:token];
+    
+}
+- (NSString *)decodeFromPercentEscapeString: (NSString *) input
+{
+    NSMutableString *outputStr = [NSMutableString stringWithString:input];
+    [outputStr replaceOccurrencesOfString:@"+"
+                               withString:@"" options:NSLiteralSearch                                   range:NSMakeRange(0,[outputStr length])];
+    return [outputStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)
+sourceApplication annotation:(id)annotation;{
+    NSString *token = [self analysisTokenWithURL:url];
+    return token != nil;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    return [self analysisTokenWithURL:url];
+}
+
+
+
 
 @end

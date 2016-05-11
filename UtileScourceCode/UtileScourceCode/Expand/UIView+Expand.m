@@ -117,6 +117,65 @@
     if(color)self.layer.borderColor = color.CGColor;
     [self setClipsToBounds:YES];
 }
+/**
+ 设置阴影层
+ */
+-(void) setShadowColor:(nonnull CGColorRef) shadowColor shadowRadius :(CGFloat) shadowRadius {
+    [self setClipsToBounds:NO];
+    
+    self.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
+    self.layer.shadowOpacity = 1;//阴影透明度，默认0
+    self.layer.shadowColor = shadowColor;//shadowColor阴影颜色
+    self.layer.shadowRadius = shadowRadius;//阴影半径，默认3
+}
+/**
+ 设置阴影层
+ */
+-(void) setShadowColor:(nonnull CGColorRef) shadowColor shadowRadius :(CGFloat) shadowRadius frame:(CGRect * _Nullable) frame{
+    [self setShadowColor:shadowColor shadowRadius:shadowRadius];
+    
+    //路径阴影
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    float width = self.bounds.size.width;
+    float height = self.bounds.size.height;
+    float x = self.bounds.origin.x;
+    float y = self.bounds.origin.y;
+    float addWH = 10;
+    if (frame) {
+        width = (*frame).size.width;
+        height = (*frame).size.height;
+        x = (*frame).origin.x;
+        y = (*frame).origin.y;
+    }
+    
+    CGPoint topLeft      = self.bounds.origin;
+    CGPoint topMiddle = CGPointMake(x+(width/2),y-addWH);
+    CGPoint topRight     = CGPointMake(x+width,y);
+    
+    CGPoint rightMiddle = CGPointMake(x+width+addWH,y+(height/2));
+    
+    CGPoint bottomRight  = CGPointMake(x+width,y+height);
+    CGPoint bottomMiddle = CGPointMake(x+(width/2),y+height+addWH);
+    CGPoint bottomLeft   = CGPointMake(x,y+height);
+    
+    
+    CGPoint leftMiddle = CGPointMake(x-addWH,y+(height/2));
+    
+    [path moveToPoint:topLeft];
+    //添加四个二元曲线
+    [path addQuadCurveToPoint:topRight
+                 controlPoint:topMiddle];
+    [path addQuadCurveToPoint:bottomRight
+                 controlPoint:rightMiddle];
+    [path addQuadCurveToPoint:bottomLeft
+                 controlPoint:bottomMiddle];
+    [path addQuadCurveToPoint:topLeft
+                 controlPoint:leftMiddle];
+    //设置阴影路径
+    self.layer.shadowPath = path.CGPath;
+}
+
 
 /**
  从xib加载数据，序列号要和当前class名称相同
@@ -126,23 +185,21 @@
     return owner;
 }
 -(UIImage * _Nullable) drawView{
-    return [self drawViewWithBounds:self.frame];
+    return [self drawViewWithBounds:self.bounds];
 }
 -(UIImage * _Nullable) drawViewWithBounds:(CGRect) bounds{
-    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 2.0);
+    return [self drawViewWithBounds:bounds scale:2];
+}
+-(UIImage * _Nullable) drawViewWithBounds:(CGRect) bounds scale:(CGFloat) scale{
+    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, -bounds.origin.x, -bounds.origin.y);
-    CALayer *layer = self.superview.layer;
-    [layer renderInContext:context];
+    [self.layer renderInContext:context];
     __block UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    //takes a screenshot of that portion of the screen and blurs it
-    //helps w/ our colors when blurring
-    //feel free to adjust jpeg quality (lower = higher perf)
     NSData *imageData = UIImageJPEGRepresentation(image, 1);
     return [UIImage imageWithData:imageData];
 }
-
 #pragma undefined
 -(BOOL) containsSubView:(UIView *)subView
 {

@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		1512AA281C2BD413006AAB41 /* PYFrostedEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */; };
 		1512AA2A1C2BE27C006AAB41 /* PYFrostedEffectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1512AA261C2BD413006AAB41 /* PYFrostedEffectView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		152194EE1CCF72E300B3D493 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E01CCF72E300B3D493 /* bitstream.c */; };
+		152194EF1CCF72E300B3D493 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E21CCF72E300B3D493 /* mask.c */; };
+		152194F01CCF72E300B3D493 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E41CCF72E300B3D493 /* qrencode.c */; };
+		152194F11CCF72E300B3D493 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E61CCF72E300B3D493 /* qrinput.c */; };
+		152194F21CCF72E300B3D493 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E81CCF72E300B3D493 /* qrspec.c */; };
+		152194F31CCF72E300B3D493 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194EA1CCF72E300B3D493 /* rscode.c */; };
+		152194F41CCF72E300B3D493 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194EC1CCF72E300B3D493 /* split.c */; };
+		152194F51CCF731100B3D493 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E01CCF72E300B3D493 /* bitstream.c */; };
+		152194F61CCF731100B3D493 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E21CCF72E300B3D493 /* mask.c */; };
+		152194F71CCF731100B3D493 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E41CCF72E300B3D493 /* qrencode.c */; };
+		152194F81CCF731100B3D493 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E61CCF72E300B3D493 /* qrinput.c */; };
+		152194F91CCF731100B3D493 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194E81CCF72E300B3D493 /* qrspec.c */; };
+		152194FA1CCF731100B3D493 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194EA1CCF72E300B3D493 /* rscode.c */; };
+		152194FB1CCF731100B3D493 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 152194EC1CCF72E300B3D493 /* split.c */; };
+		152194FE1CCF749B00B3D493 /* QRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152194FD1CCF749B00B3D493 /* QRCodeController.m */; };
 		1529D4181C48F69300905A92 /* PYHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 15F76C0C1C1E735300DB41BC /* PYHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15632BD01C4D1606006D3B09 /* PYOrientationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BCF1C4D1606006D3B09 /* PYOrientationListener.m */; };
 		15632BD21C4D189E006D3B09 /* PYOrientationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 15632BCE1C4D1606006D3B09 /* PYOrientationListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,13 +33,11 @@
 		15632BDC1C4D1F67006D3B09 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 15632BD31C4D1997006D3B09 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15632BDF1C4DE3E9006D3B09 /* PYMotionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */; };
 		15632BE01C4E36DF006D3B09 /* PYMotionListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 15632BDD1C4DE3E9006D3B09 /* PYMotionListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1563F2AF1C5E35B700062602 /* UIViewController+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2A91C5E35B700062602 /* UIViewController+Hook.m */; };
-		1563F2B01C5E35B700062602 /* UIViewController+HookOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2AB1C5E35B700062602 /* UIViewController+HookOrientation.m */; };
-		1563F2B11C5E35B700062602 /* UIViewController+HookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2AD1C5E35B700062602 /* UIViewController+HookView.m */; };
-		1563F2B61C5E35EF00062602 /* UIViewController+Hook.h in Headers */ = {isa = PBXBuildFile; fileRef = 1563F2A81C5E35B700062602 /* UIViewController+Hook.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1563F2B71C5E35EF00062602 /* UIViewController+HookOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1563F2AA1C5E35B700062602 /* UIViewController+HookOrientation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1563F2B81C5E35EF00062602 /* UIViewController+HookView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1563F2AC1C5E35B700062602 /* UIViewController+HookView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157796621CA92CF600E7E075 /* CutScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157796611CA92CF600E7E075 /* CutScreenController.m */; };
+		157796641CA9346900E7E075 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 157796631CA9346900E7E075 /* 1.png */; };
+		157796671CA936BF00E7E075 /* FeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157796661CA936BF00E7E075 /* FeController.m */; };
 		157886CC1BD9E18300B91D76 /* PYViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 157886CB1BD9E18300B91D76 /* PYViewVC.m */; };
+		157CEAB61CB79F480038515C /* GraphicsDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157CEAB51CB79F480038515C /* GraphicsDrawController.m */; };
 		15902FBA1C07030300CAEF89 /* NSDictionary+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15902FB91C07030300CAEF89 /* NSDictionary+Expand.m */; };
 		15902FBD1C07036E00CAEF89 /* NSData+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15902FBC1C07036E00CAEF89 /* NSData+Expand.m */; };
 		15902FC01C0704A400CAEF89 /* NSDictionary+Expand.h in Headers */ = {isa = PBXBuildFile; fileRef = 15902FB81C07030300CAEF89 /* NSDictionary+Expand.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,9 +49,6 @@
 		1592B5F21C60DEBE00C0C8CD /* PYGraphicsDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EC28EC1C4C9D5200032949 /* PYGraphicsDraw.m */; };
 		1592B5F31C60DEBE00C0C8CD /* PYGraphicsThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EC28EE1C4C9D5200032949 /* PYGraphicsThumb.m */; };
 		1592B5F41C60DEBE00C0C8CD /* PYHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F76C0D1C1E735300DB41BC /* PYHook.m */; };
-		1592B5F51C60DEBE00C0C8CD /* UIViewController+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2A91C5E35B700062602 /* UIViewController+Hook.m */; };
-		1592B5F61C60DEBE00C0C8CD /* UIViewController+HookOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2AB1C5E35B700062602 /* UIViewController+HookOrientation.m */; };
-		1592B5F71C60DEBE00C0C8CD /* UIViewController+HookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1563F2AD1C5E35B700062602 /* UIViewController+HookView.m */; };
 		1592B5F81C60DEBE00C0C8CD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BD41C4D1997006D3B09 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1592B5FA1C60DEBE00C0C8CD /* PYReachabilityListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BD71C4D19CE006D3B09 /* PYReachabilityListener.m */; };
 		1592B5FB1C60DEBE00C0C8CD /* PYMotionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */; };
@@ -81,15 +91,12 @@
 		15AAE2BF1BD90E8F00B90BB5 /* PYReflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AAE2BB1BD90E8F00B90BB5 /* PYReflect.m */; };
 		15AEF1B71BEAFEC200732F84 /* NSObject+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEF1B61BEAFEC200732F84 /* NSObject+Expand.m */; };
 		15AEF1B91BEAFF4900732F84 /* NSObject+Expand.h in Headers */ = {isa = PBXBuildFile; fileRef = 15AEF1B51BEAFEC200732F84 /* NSObject+Expand.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15AF62EE1BF4963C00EE943E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15AF62ED1BF4963C00EE943E /* 1.jpg */; };
 		15BA65A81BE07B2B00CF192B /* PYUtile.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BA65A71BE07B2B00CF192B /* PYUtile.m */; };
 		15BA65B11BE0985700CF192B /* Utile.Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BA65B01BE0985700CF192B /* Utile.Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BA65B51BE0985700CF192B /* Utile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BA65AE1BE0985700CF192B /* Utile.framework */; };
 		15BA65B61BE0985700CF192B /* Utile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15BA65AE1BE0985700CF192B /* Utile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15BA65BF1BE098B400CF192B /* PYUtile.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BA65A61BE07B2B00CF192B /* PYUtile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BA65C21BE098B500CF192B /* PYReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = 15AAE2BA1BD90E8F00B90BB5 /* PYReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15C2791D1BE9F54900C80293 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2791C1BE9F54900C80293 /* UIKit.framework */; };
-		15C2791F1BE9F7D900C80293 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2791E1BE9F7D900C80293 /* Foundation.framework */; };
 		15D25FF91C16B89F00D1623D /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15D25FF81C16B89F00D1623D /* 1.wav */; };
 		15E6A0981BD774EC00511160 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E6A0971BD774EC00511160 /* main.m */; };
 		15E6A09B1BD774EC00511160 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E6A09A1BD774EC00511160 /* AppDelegate.m */; };
@@ -106,6 +113,7 @@
 		15EC28F41C4C9E8300032949 /* PYGraphicsDraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 15EC28EB1C4C9D5200032949 /* PYGraphicsDraw.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15EC28F51C4C9E8300032949 /* PYGraphicsThumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 15EC28ED1C4C9D5200032949 /* PYGraphicsThumb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15EC28F61C4C9E8300032949 /* PYKeyboardNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 15EC28E71C4C9CFE00032949 /* PYKeyboardNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15EC7AF51CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EC7AF41CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.m */; };
 		15F76C0E1C1E735300DB41BC /* PYHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F76C0D1C1E735300DB41BC /* PYHook.m */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +158,22 @@
 /* Begin PBXFileReference section */
 		1512AA261C2BD413006AAB41 /* PYFrostedEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYFrostedEffectView.h; sourceTree = "<group>"; };
 		1512AA271C2BD413006AAB41 /* PYFrostedEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYFrostedEffectView.m; sourceTree = "<group>"; };
+		152194E01CCF72E300B3D493 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		152194E11CCF72E300B3D493 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		152194E21CCF72E300B3D493 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		152194E31CCF72E300B3D493 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		152194E41CCF72E300B3D493 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		152194E51CCF72E300B3D493 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		152194E61CCF72E300B3D493 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		152194E71CCF72E300B3D493 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		152194E81CCF72E300B3D493 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		152194E91CCF72E300B3D493 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		152194EA1CCF72E300B3D493 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		152194EB1CCF72E300B3D493 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		152194EC1CCF72E300B3D493 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		152194ED1CCF72E300B3D493 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		152194FC1CCF749B00B3D493 /* QRCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeController.h; sourceTree = "<group>"; };
+		152194FD1CCF749B00B3D493 /* QRCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeController.m; sourceTree = "<group>"; };
 		15632BCE1C4D1606006D3B09 /* PYOrientationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYOrientationListener.h; sourceTree = "<group>"; };
 		15632BCF1C4D1606006D3B09 /* PYOrientationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYOrientationListener.m; sourceTree = "<group>"; };
 		15632BD31C4D1997006D3B09 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -158,14 +182,15 @@
 		15632BD71C4D19CE006D3B09 /* PYReachabilityListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYReachabilityListener.m; sourceTree = "<group>"; };
 		15632BDD1C4DE3E9006D3B09 /* PYMotionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMotionListener.h; sourceTree = "<group>"; };
 		15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMotionListener.m; sourceTree = "<group>"; };
-		1563F2A81C5E35B700062602 /* UIViewController+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Hook.h"; sourceTree = "<group>"; };
-		1563F2A91C5E35B700062602 /* UIViewController+Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Hook.m"; sourceTree = "<group>"; };
-		1563F2AA1C5E35B700062602 /* UIViewController+HookOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HookOrientation.h"; sourceTree = "<group>"; };
-		1563F2AB1C5E35B700062602 /* UIViewController+HookOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HookOrientation.m"; sourceTree = "<group>"; };
-		1563F2AC1C5E35B700062602 /* UIViewController+HookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HookView.h"; sourceTree = "<group>"; };
-		1563F2AD1C5E35B700062602 /* UIViewController+HookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HookView.m"; sourceTree = "<group>"; };
+		157796601CA92CF600E7E075 /* CutScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutScreenController.h; sourceTree = "<group>"; };
+		157796611CA92CF600E7E075 /* CutScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutScreenController.m; sourceTree = "<group>"; };
+		157796631CA9346900E7E075 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		157796651CA936BF00E7E075 /* FeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeController.h; sourceTree = "<group>"; };
+		157796661CA936BF00E7E075 /* FeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeController.m; sourceTree = "<group>"; };
 		157886CA1BD9E18300B91D76 /* PYViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYViewVC.h; sourceTree = "<group>"; };
 		157886CB1BD9E18300B91D76 /* PYViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYViewVC.m; sourceTree = "<group>"; };
+		157CEAB41CB79F480038515C /* GraphicsDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsDrawController.h; sourceTree = "<group>"; };
+		157CEAB51CB79F480038515C /* GraphicsDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsDrawController.m; sourceTree = "<group>"; };
 		15902FB81C07030300CAEF89 /* NSDictionary+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Expand.h"; sourceTree = "<group>"; };
 		15902FB91C07030300CAEF89 /* NSDictionary+Expand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Expand.m"; sourceTree = "<group>"; };
 		15902FBB1C07036E00CAEF89 /* NSData+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Expand.h"; sourceTree = "<group>"; };
@@ -195,14 +220,11 @@
 		15AAE2BB1BD90E8F00B90BB5 /* PYReflect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYReflect.m; sourceTree = "<group>"; };
 		15AEF1B51BEAFEC200732F84 /* NSObject+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Expand.h"; sourceTree = "<group>"; };
 		15AEF1B61BEAFEC200732F84 /* NSObject+Expand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Expand.m"; sourceTree = "<group>"; };
-		15AF62ED1BF4963C00EE943E /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		15BA65A61BE07B2B00CF192B /* PYUtile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYUtile.h; sourceTree = "<group>"; };
 		15BA65A71BE07B2B00CF192B /* PYUtile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYUtile.m; sourceTree = "<group>"; };
 		15BA65AE1BE0985700CF192B /* Utile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BA65B01BE0985700CF192B /* Utile.Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utile.Framework.h; sourceTree = "<group>"; };
 		15BA65B21BE0985700CF192B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15C2791C1BE9F54900C80293 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		15C2791E1BE9F7D900C80293 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		15D25FF81C16B89F00D1623D /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		15E6A0931BD774EC00511160 /* UtileScourceCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UtileScourceCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E6A0971BD774EC00511160 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -226,6 +248,8 @@
 		15EC28EC1C4C9D5200032949 /* PYGraphicsDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGraphicsDraw.m; sourceTree = "<group>"; };
 		15EC28ED1C4C9D5200032949 /* PYGraphicsThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGraphicsThumb.h; sourceTree = "<group>"; };
 		15EC28EE1C4C9D5200032949 /* PYGraphicsThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGraphicsThumb.m; sourceTree = "<group>"; };
+		15EC7AF31CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYUncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		15EC7AF41CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		15F76C0C1C1E735300DB41BC /* PYHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYHook.h; sourceTree = "<group>"; };
 		15F76C0D1C1E735300DB41BC /* PYHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYHook.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,8 +259,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15C2791F1BE9F7D900C80293 /* Foundation.framework in Frameworks */,
-				15C2791D1BE9F54900C80293 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +296,27 @@
 			path = FrostedEffectView;
 			sourceTree = "<group>";
 		};
+		152194DF1CCF72E300B3D493 /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				152194E01CCF72E300B3D493 /* bitstream.c */,
+				152194E11CCF72E300B3D493 /* bitstream.h */,
+				152194E21CCF72E300B3D493 /* mask.c */,
+				152194E31CCF72E300B3D493 /* mask.h */,
+				152194E41CCF72E300B3D493 /* qrencode.c */,
+				152194E51CCF72E300B3D493 /* qrencode.h */,
+				152194E61CCF72E300B3D493 /* qrinput.c */,
+				152194E71CCF72E300B3D493 /* qrinput.h */,
+				152194E81CCF72E300B3D493 /* qrspec.c */,
+				152194E91CCF72E300B3D493 /* qrspec.h */,
+				152194EA1CCF72E300B3D493 /* rscode.c */,
+				152194EB1CCF72E300B3D493 /* rscode.h */,
+				152194EC1CCF72E300B3D493 /* split.c */,
+				152194ED1CCF72E300B3D493 /* split.h */,
+			);
+			path = libqrencode;
+			sourceTree = "<group>";
+		};
 		15632BC71C4D130F006D3B09 /* Listener */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +330,21 @@
 				15632BDE1C4DE3E9006D3B09 /* PYMotionListener.m */,
 			);
 			path = Listener;
+			sourceTree = "<group>";
+		};
+		1577965F1CA92CF600E7E075 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				157796601CA92CF600E7E075 /* CutScreenController.h */,
+				157796611CA92CF600E7E075 /* CutScreenController.m */,
+				157796651CA936BF00E7E075 /* FeController.h */,
+				157796661CA936BF00E7E075 /* FeController.m */,
+				157CEAB41CB79F480038515C /* GraphicsDrawController.h */,
+				157CEAB51CB79F480038515C /* GraphicsDrawController.m */,
+				152194FC1CCF749B00B3D493 /* QRCodeController.h */,
+				152194FD1CCF749B00B3D493 /* QRCodeController.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		157886BD1BD9CA2A00B91D76 /* RegexPredicate */ = {
@@ -367,10 +425,8 @@
 		15E6A08A1BD774EC00511160 = {
 			isa = PBXGroup;
 			children = (
+				157796631CA9346900E7E075 /* 1.png */,
 				15D25FF81C16B89F00D1623D /* 1.wav */,
-				15AF62ED1BF4963C00EE943E /* 1.jpg */,
-				15C2791E1BE9F7D900C80293 /* Foundation.framework */,
-				15C2791C1BE9F54900C80293 /* UIKit.framework */,
 				15E6A0951BD774EC00511160 /* UtileScourceCode */,
 				15E6A0AF1BD774EC00511160 /* UtileScourceCodeTests */,
 				15E6A0BA1BD774EC00511160 /* UtileScourceCodeUITests */,
@@ -393,6 +449,8 @@
 		15E6A0951BD774EC00511160 /* UtileScourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				152194DF1CCF72E300B3D493 /* libqrencode */,
+				1577965F1CA92CF600E7E075 /* Test */,
 				15E6A0991BD774EC00511160 /* AppDelegate.h */,
 				15E6A09A1BD774EC00511160 /* AppDelegate.m */,
 				15BA65A61BE07B2B00CF192B /* PYUtile.h */,
@@ -414,6 +472,8 @@
 				157886BD1BD9CA2A00B91D76 /* RegexPredicate */,
 				15E6A0961BD774EC00511160 /* Supporting Files */,
 				15A15CCE1BF06AFB0013176F /* ViewAutolayout */,
+				15EC7AF31CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.h */,
+				15EC7AF41CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.m */,
 			);
 			path = UtileScourceCode;
 			sourceTree = "<group>";
@@ -469,12 +529,6 @@
 			children = (
 				15F76C0C1C1E735300DB41BC /* PYHook.h */,
 				15F76C0D1C1E735300DB41BC /* PYHook.m */,
-				1563F2A81C5E35B700062602 /* UIViewController+Hook.h */,
-				1563F2A91C5E35B700062602 /* UIViewController+Hook.m */,
-				1563F2AA1C5E35B700062602 /* UIViewController+HookOrientation.h */,
-				1563F2AB1C5E35B700062602 /* UIViewController+HookOrientation.m */,
-				1563F2AC1C5E35B700062602 /* UIViewController+HookView.h */,
-				1563F2AD1C5E35B700062602 /* UIViewController+HookView.m */,
 			);
 			path = Hook;
 			sourceTree = "<group>";
@@ -512,9 +566,6 @@
 				15632BD21C4D189E006D3B09 /* PYOrientationListener.h in Headers */,
 				15632BDA1C4D1EBE006D3B09 /* PYReachabilityListener.h in Headers */,
 				15632BE01C4E36DF006D3B09 /* PYMotionListener.h in Headers */,
-				1563F2B61C5E35EF00062602 /* UIViewController+Hook.h in Headers */,
-				1563F2B71C5E35EF00062602 /* UIViewController+HookOrientation.h in Headers */,
-				1563F2B81C5E35EF00062602 /* UIViewController+HookView.h in Headers */,
 				15632BDC1C4D1F67006D3B09 /* Reachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -655,9 +706,9 @@
 			files = (
 				15D25FF91C16B89F00D1623D /* 1.wav in Resources */,
 				15E6A0A61BD774EC00511160 /* LaunchScreen.storyboard in Resources */,
-				15AF62EE1BF4963C00EE943E /* 1.jpg in Resources */,
 				15E6A0A31BD774EC00511160 /* Assets.xcassets in Resources */,
 				15E6A0A11BD774EC00511160 /* Main.storyboard in Resources */,
+				157796641CA9346900E7E075 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +733,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152194F51CCF731100B3D493 /* bitstream.c in Sources */,
+				152194F61CCF731100B3D493 /* mask.c in Sources */,
+				152194F71CCF731100B3D493 /* qrencode.c in Sources */,
+				152194F81CCF731100B3D493 /* qrinput.c in Sources */,
+				152194F91CCF731100B3D493 /* qrspec.c in Sources */,
+				152194FA1CCF731100B3D493 /* rscode.c in Sources */,
+				152194FB1CCF731100B3D493 /* split.c in Sources */,
 				1592B60C1C60E0ED00C0C8CD /* PYOrientationListener.m in Sources */,
 				1592B60B1C60DFD500C0C8CD /* PYUtile.m in Sources */,
 				1592B6001C60DEC900C0C8CD /* NSDate+Expand.m in Sources */,
@@ -700,9 +758,6 @@
 				1592B5F21C60DEBE00C0C8CD /* PYGraphicsDraw.m in Sources */,
 				1592B5F31C60DEBE00C0C8CD /* PYGraphicsThumb.m in Sources */,
 				1592B5F41C60DEBE00C0C8CD /* PYHook.m in Sources */,
-				1592B5F51C60DEBE00C0C8CD /* UIViewController+Hook.m in Sources */,
-				1592B5F61C60DEBE00C0C8CD /* UIViewController+HookOrientation.m in Sources */,
-				1592B5F71C60DEBE00C0C8CD /* UIViewController+HookView.m in Sources */,
 				1592B5F81C60DEBE00C0C8CD /* Reachability.m in Sources */,
 				1592B5FA1C60DEBE00C0C8CD /* PYReachabilityListener.m in Sources */,
 				1592B5FB1C60DEBE00C0C8CD /* PYMotionListener.m in Sources */,
@@ -717,35 +772,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152194F01CCF72E300B3D493 /* qrencode.c in Sources */,
+				152194F31CCF72E300B3D493 /* rscode.c in Sources */,
 				15A44B371BE8A2A1007D6E4A /* UIColor+Expand.m in Sources */,
 				15BA65A81BE07B2B00CF192B /* PYUtile.m in Sources */,
 				1512AA281C2BD413006AAB41 /* PYFrostedEffectView.m in Sources */,
 				15902FBA1C07030300CAEF89 /* NSDictionary+Expand.m in Sources */,
 				15AEF1B71BEAFEC200732F84 /* NSObject+Expand.m in Sources */,
-				1563F2B01C5E35B700062602 /* UIViewController+HookOrientation.m in Sources */,
 				15EC28E91C4C9CFE00032949 /* PYKeyboardNotification.m in Sources */,
 				15A15CD11BF06AFB0013176F /* PYViewAutolayoutCenter.m in Sources */,
+				152194FE1CCF749B00B3D493 /* QRCodeController.m in Sources */,
 				15632BD81C4D19CE006D3B09 /* PYReachabilityListener.m in Sources */,
-				1563F2B11C5E35B700062602 /* UIViewController+HookView.m in Sources */,
 				15F76C0E1C1E735300DB41BC /* PYHook.m in Sources */,
 				15EC28EF1C4C9D5200032949 /* PYGraphicsDraw.m in Sources */,
 				15902FBD1C07036E00CAEF89 /* NSData+Expand.m in Sources */,
 				15AAE2BF1BD90E8F00B90BB5 /* PYReflect.m in Sources */,
+				157CEAB61CB79F480038515C /* GraphicsDrawController.m in Sources */,
+				152194F11CCF72E300B3D493 /* qrinput.c in Sources */,
 				15A44B381BE8A2A1007D6E4A /* UIImage+Expand.m in Sources */,
 				15EC28F01C4C9D5200032949 /* PYGraphicsThumb.m in Sources */,
-				1563F2AF1C5E35B700062602 /* UIViewController+Hook.m in Sources */,
+				157796621CA92CF600E7E075 /* CutScreenController.m in Sources */,
+				15EC7AF51CDC6D1E00ACDC68 /* PYUncaughtExceptionHandler.m in Sources */,
 				15E6A09B1BD774EC00511160 /* AppDelegate.m in Sources */,
 				15E6A0981BD774EC00511160 /* main.m in Sources */,
 				15A44B331BE8A2A1007D6E4A /* NSNumber+Expand.m in Sources */,
+				157796671CA936BF00E7E075 /* FeController.m in Sources */,
 				15A44B351BE8A2A1007D6E4A /* NSString+Expand.m in Sources */,
 				15EC28E31C4C9A9300032949 /* PYRegexPredicate.m in Sources */,
 				15A44B301BE8A2A1007D6E4A /* NSDate+Expand.m in Sources */,
+				152194F41CCF72E300B3D493 /* split.c in Sources */,
+				152194EF1CCF72E300B3D493 /* mask.c in Sources */,
+				152194EE1CCF72E300B3D493 /* bitstream.c in Sources */,
 				15A44B391BE8A2A1007D6E4A /* UILable+Expand.m in Sources */,
 				15A44B3A1BE8A2A1007D6E4A /* UIView+Expand.m in Sources */,
 				15632BDF1C4DE3E9006D3B09 /* PYMotionListener.m in Sources */,
 				15632BD01C4D1606006D3B09 /* PYOrientationListener.m in Sources */,
 				157886CC1BD9E18300B91D76 /* PYViewVC.m in Sources */,
 				15902FC41C070E9C00CAEF89 /* NSArray+Expand.m in Sources */,
+				152194F21CCF72E300B3D493 /* qrspec.c in Sources */,
 				15632BD51C4D1997006D3B09 /* Reachability.m in Sources */,
 				15A44B0D1BE8504D007D6E4A /* EXTScope.m in Sources */,
 			);
@@ -817,7 +881,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Utile.Framework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = (
@@ -827,6 +891,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Utile.Utile-Framework";
 				PRODUCT_NAME = Utile;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -843,7 +908,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Utile.Framework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = (
@@ -853,6 +918,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Utile.Utile-Framework";
 				PRODUCT_NAME = Utile;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

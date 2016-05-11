@@ -62,6 +62,14 @@ double parseRadiansToDegrees(double radians);
  经纬度转换距离 (KM)
  */
 double parseCoordinateToDistance(double lat1, double lng1, double lat2, double lng2);
+/**
+ 生成UUID
+ */
+NSString * _Nullable PYUUID(NSUInteger length);
+/**
+ cup使用率
+ */
+float cpu_usage();
 
 @interface PYUtile : NSObject
 

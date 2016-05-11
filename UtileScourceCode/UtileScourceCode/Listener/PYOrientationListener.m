@@ -133,15 +133,14 @@ static PYOrientationListener *xPYOrientationListener;
  */
 +(BOOL) isSupportOrientation:(UIDeviceOrientation) orientation targetController:(nonnull UIViewController *) targetController{
     
-    UIInterfaceOrientationMask supportedOrientations = [[UIApplication sharedApplication].keyWindow.rootViewController supportedInterfaceOrientations];
-    
-    NSInteger currentOrientation = 2 << orientation;
-    if (!(supportedOrientations & currentOrientation)) {
+    UIInterfaceOrientationMask supportedInterfaceOrientations = [[UIApplication sharedApplication].keyWindow.rootViewController supportedInterfaceOrientations];
+    UIInterfaceOrientationMask interfaceOrientationMack = 1 << orientation;
+    if (!(supportedInterfaceOrientations & interfaceOrientationMack)) {
         return false;
     }
     
-    supportedOrientations = [targetController supportedInterfaceOrientations];
-    if (!(supportedOrientations & currentOrientation)) {
+    supportedInterfaceOrientations = [targetController supportedInterfaceOrientations];
+    if (!(supportedInterfaceOrientations & interfaceOrientationMack)) {
         return false;
     }
     

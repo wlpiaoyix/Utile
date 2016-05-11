@@ -22,47 +22,59 @@
 #import "PYReachabilityListener.h"
 #import "PYOrientationListener.h"
 #import "PYKeyboardNotification.h"
+#import "PYFrostedEffectView.h"
+
+
+
+CGFloat ScreenWidth = 375;
+CGFloat ScreenHigh = 667;
 
 @interface PYDrawView:UIView
+//@property (nonatomic, strong) PYFrostedEffectView *feView;
+@property (nonatomic) NSTimeInterval timer;
 @end
 @implementation PYDrawView
+-(void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if ([NSDate timeIntervalSinceReferenceDate] -self.timer > 0.05) {
+        UITouch *touch = [touches anyObject];
+        CGPoint point = [touch locationInView:self];
+//        self.feView.effectValue = point.x / self.frame.size.width;
+//        [self.feView refreshForstedEffect];
+        self.timer = [NSDate timeIntervalSinceReferenceDate];
+    }
 
--(void) drawRect:(CGRect)rect{
-//    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:@"我的吃sdfgsdfg"];
-//    [attributeStr setAttributes:@{(NSString*)kCTForegroundColorAttributeName:[UIColor whiteColor],(NSString*)kCTFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, attributeStr.length)];
-//    [PYGraphicsDraw drawTextWithContext:nil attribute:attributeStr rect:rect y:0 scaleFlag:YES];
-    [PYGraphicsDraw drawLinearGradientWithContext:nil colorValues:(CGFloat[]){
-        0.01f, 0.99f, 0.01f, 1.0f,
-        0.01f, 0.99f, 0.99f, 1.0f,
-        0.99f, 0.99f, 0.01f, 1.0f
-    } alphas:(CGFloat[]){
-        0.1f,
-        0.5f,
-        0.9f
-    } length:3 startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 200)];
-    
-//    CGRect r = CGRectMake(0, 0, 40, 30);
-//    [PYGraphicsDraw drawEllipseWithContext:nil rect:r strokeColor:[[UIColor grayColor] CGColor] fillColor:[[UIColor blueColor] CGColor] strokeWidth:6];
-//    [PYGraphicsDraw drawCircleWithContext:nil pointCenter:CGPointMake(80, 20) radius:15 strokeColor:[[UIColor whiteColor] CGColor] fillColor:[[UIColor clearColor] CGColor] strokeWidth:10 startDegree:20 endDegree:260];
-//    CGPoint pointer[3] = {CGPointMake(40, 0),CGPointMake(80, 0),CGPointMake(80, 40)};
-//    [PYGraphicsDraw drawPolygonWithContext:nil pointer:pointer pointerLength:3 strokeColor:[[UIColor blueColor] CGColor] fillColor:nil strokeWidth:4];
-//    CGFloat lengthPoint[2] = {5,10};
-//    [PYGraphicsDraw drawLineWithContext:nil startPoint:CGPointMake(20, 20) endPoint:CGPointMake(300, 70) strokeColor:[[UIColor yellowColor] CGColor] strokeWidth:2 lengthPointer:lengthPoint length:2];
 }
+
+//-(void) drawRect:(CGRect)rect{
+////    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:@"我的吃sdfgsdfg"];
+////    [attributeStr setAttributes:@{(NSString*)kCTForegroundColorAttributeName:[UIColor whiteColor],(NSString*)kCTFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, attributeStr.length)];
+////    [PYGraphicsDraw drawTextWithContext:nil attribute:attributeStr rect:rect y:0 scaleFlag:YES];
+//    [PYGraphicsDraw drawLinearGradientWithContext:nil colorValues:(CGFloat[]){
+//        0.01f, 0.99f, 0.01f, 1.0f,
+//        0.01f, 0.99f, 0.99f, 1.0f,
+//        0.99f, 0.99f, 0.01f, 1.0f
+//    } alphas:(CGFloat[]){
+//        0.1f,
+//        0.5f,
+//        0.9f
+//    } length:3 startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 200)];
+//    
+////    CGRect r = CGRectMake(0, 0, 40, 30);
+////    [PYGraphicsDraw drawEllipseWithContext:nil rect:r strokeColor:[[UIColor grayColor] CGColor] fillColor:[[UIColor blueColor] CGColor] strokeWidth:6];
+////    [PYGraphicsDraw drawCircleWithContext:nil pointCenter:CGPointMake(80, 20) radius:15 strokeColor:[[UIColor whiteColor] CGColor] fillColor:[[UIColor clearColor] CGColor] strokeWidth:10 startDegree:20 endDegree:260];
+////    CGPoint pointer[3] = {CGPointMake(40, 0),CGPointMake(80, 0),CGPointMake(80, 40)};
+////    [PYGraphicsDraw drawPolygonWithContext:nil pointer:pointer pointerLength:3 strokeColor:[[UIColor blueColor] CGColor] fillColor:nil strokeWidth:4];
+////    CGFloat lengthPoint[2] = {5,10};
+////    [PYGraphicsDraw drawLineWithContext:nil startPoint:CGPointMake(20, 20) endPoint:CGPointMake(300, 70) strokeColor:[[UIColor yellowColor] CGColor] strokeWidth:2 lengthPointer:lengthPoint length:2];
+//}
 
 @end
 
 
-@interface PYViewVC ()<PYReachabilityListener, PYOrientationListener>
-@property (nonatomic,strong) UIImage *imageOrg;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UITextField *text;
-@property (strong, nonatomic) UITextField *text2;
-@property (nonatomic) UIView *view01;
-@property (nonatomic) UIView *view02;
-@property (nonatomic) UIView *view03;
-@property (nonatomic, strong) PYGraphicsThumb *gt;
-@property (strong, nonatomic) PYFrostedEffectView *forview;
+@interface PYViewVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray<NSDictionary <NSString *, NSString *> *> * datas;
+@property (nonatomic) NSString * identify;
 
 @end
 
@@ -72,93 +84,40 @@
 }
 
 - (void)viewDidLoad {
-    
-    
     [super viewDidLoad];
-    UIView *view1 = [UIView new];
-    UIView *view2 = [UIView new];
-    UIView *view3 = [UIView new];
-    UIView *view4 = [UIView new];
-    UIView *view5 = [UIView new];
-    view1.backgroundColor = [UIColor redColor];
-    view2.backgroundColor = [UIColor yellowColor];
-    view3.backgroundColor = [UIColor blueColor];
-    view4.backgroundColor = [UIColor greenColor];
-    view5.backgroundColor = [UIColor orangeColor];
-    NSArray *array = @[view1, view2, view3, view4, view5];
-    for (UIView * view in array) {
-        [[self.view viewWithTag:55] addSubview:view];
-    }
-    [PYViewAutolayoutCenter persistConstraintVertical:array relationmargins:UIEdgeInsetsMake(0, 0, 0, 0) relationToItems:PYEdgeInsetsItemMake(nil, nil, nil, nil) offset:3];
-    [[PYReachabilityListener instanceSingle] addListener:self];
-    [[PYOrientationListener instanceSingle] addListener:self];
-    
-    self.text2 = [UITextField new];
-    [self.view addSubview:self.text2];
-    
-    [PYHook mergeHookInstanceWithTarget:[self class] action:@selector(b:) blockBefore:^BOOL(NSInvocation * _Nonnull invoction) {
-        NSLog(@"");
-        return true;
-    } blockAfter:^(NSInvocation * _Nonnull invoction) {
-        NSLog(@"");
-    }];
-    
-    @try {
-        [self b:2.0];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"");
-    }
-    
-  
+    self.datas = [NSArray arrayWithObjects:
+                  @{@"key":@(0), @"name":@"截屏", @"identify":@"cutScreen"},
+                  @{@"key":@(1), @"name":@"绘图", @"identify":@"gdc"},
+                  @{@"key":@(1), @"name":@"二维码", @"identify":@"QRCode"},
+                  nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
--(void) viewDidAppear:(BOOL)animated{
-    [self.view drawView];
-    [self.text2 removeFromSuperview];
-    self.text2 = nil;
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.datas count];
 }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    NSDictionary * data = self.datas[indexPath.row];
+    cell.textLabel.text = data[@"name"];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dict = self.datas[indexPath.row];
+    self.identify = dict[@"identify"];
+    [self performSelector:@selector(goNext)];
+}
+
+-(void) goNext{
+    [self performSegueWithIdentifier:self.identify sender:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(CGPoint) b:(int) a{
-    @throw [[NSException alloc] initWithName:@"f" reason:@"a" userInfo:nil];
-    return CGPointMake(a, a * 2);
-}
 
-/**
- 没有网络
- */
--(void) notReachable{
-    
-}
-/**
- 2G/3G/4G网络
- */
--(void) reachableViaWWAN{
-    
-}
-/**
- WIFI/WLAN网络
- */
--(void) reachableViaWiFi{
-    
-}
 
-// Device oriented vertically, home button on the bottom
--(void) deviceOrientationPortrait{
-}
-// Device oriented vertically, home button on the top
--(void) deviceOrientationPortraitUpsideDown{
-}
-// Device oriented horizontally, home button on the right
--(void) deviceOrientationLandscapeLeft{
-}
-// Device oriented horizontally, home button on the left
--(void) deviceOrientationLandscapeRight{
-}
-// Device oriented horizontally, home button not support
--(void) deviceOrientationNotSupport:(UIDeviceOrientation) deviceOrientation{
-
-}
 @end

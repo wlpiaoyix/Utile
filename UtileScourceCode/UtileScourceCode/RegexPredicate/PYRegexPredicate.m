@@ -10,7 +10,7 @@
 
 
 NSString * REGEX_HOMEHONE = @"^((\\d{2,4}\\-){0,1}\\d{7,9})$";
-NSString * REGEX_MOBILEPHONE = @"^(\\+(\\d{2})){0,1}((13)|(14)|(15)|(18)|(17))\\d{9}$";
+NSString * REGEX_MOBILEPHONE = @"^(\\+(\\d{2})){0,1}((13)|(14)|(15)|(18)|(19)|(17))\\d{9}$";
 NSString * REGEX_INTEGER = @"^\\d{1,}$";
 NSString * REGEX_FLOAT = @"^\\d{1,}\\.{1}\\d{1,}$";
 NSString * REGEX_EMAIL = @"^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$";

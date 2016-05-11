@@ -29,6 +29,7 @@ static PYReachabilityListener *xPYReachabilityListener;
 -(instancetype) init{
     if (self = [super init]) {
         self.tableListeners = [NSHashTable<id<PYReachabilityListener>> weakObjectsHashTable];
+        _status = ReachableViaWiFi;
         //开启网络状况的监听
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
         self.hostReach = [Reachability reachabilityWithHostName:@"www.baidu.com"] ;
